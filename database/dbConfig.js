@@ -1,0 +1,22 @@
+var mysql = require('mysql');
+
+var connection = null;
+
+exports.connect = function(done){
+    done(null);
+}
+
+var connectionPool = null;
+
+exports.getConnection = function(){
+    if (!connectionPool){
+        connectionPool = mysql.createPool({
+            connectionLimit: 10,
+            host     : 'mysql-awi-dumaire.alwaysdata.net',
+            user     : '243951_awi',
+            password : 'ProjetSEP-2020',
+            database: 'awi-dumaire_2021'
+        })      
+   }
+   return connectionPool;
+}

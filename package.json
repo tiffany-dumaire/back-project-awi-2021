@@ -1,0 +1,31 @@
+{
+  "name": "projet_awi_2021",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Back application awi 2021 - Projet IG4",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "heroku",
+    "projet",
+    "awi",
+    "2021"
+  ],
+  "author": "Tiffany Dumaire",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "helmet": "^4.6.0",
+    "jsonwebtoken": "^8.5.1",
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.13"
+  },
+  "engines": {
+    "node": "15.7.0"
+  }
+}
