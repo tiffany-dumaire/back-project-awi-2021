@@ -10,7 +10,7 @@ const jwt = require('jsonwebtoken');
 const cors = require('cors')
 
 var corsOptions = { // les entrées ne viendront que de : 
-    origin: "http://localhost:4200"||"",
+    origin: "http://localhost:4000"||"",
     optionsSuccessStatus: 204 // some legacy browsers (IE11, various SmartTVs) choke on 204 
 }; 
 

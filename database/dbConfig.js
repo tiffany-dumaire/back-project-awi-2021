@@ -8,7 +8,7 @@ exports.connect = function(done){
 
 var connectionPool = null;
 
-exports.getConnection = function(){
+function getConnection(){
     if (!connectionPool){
         connectionPool = mysql.createPool({
             connectionLimit: 10,
@@ -19,4 +19,15 @@ exports.getConnection = function(){
         })      
    }
    return connectionPool;
+}
+
+exports.queryData = function(request,callback){
+    getConnection().query(request,function(err,result){
+        if(err) console.log(err);
+        callback(result);
+    });
+}
+
+exports.queryAll = function(table,callback){
+    this.queryData(`SELECT * FROM ${table}`, callback);
 }

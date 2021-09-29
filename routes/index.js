@@ -1,3 +1,3 @@
 module.exports = function(app){
-    //app.use('/contact',require('./contactRoute'));
+    app.use('/users',require('./user.route'));
 }
