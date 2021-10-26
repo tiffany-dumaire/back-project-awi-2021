@@ -1,17 +1,18 @@
-const service = require('../services/user.service');
+const model = require('../models/user.model');
 
 exports.getAllUsers = (res) => {
-    service.getAllUsers(res);
+    console.log("controller");
+    model.getAllUsers(res);
 }
 
 exports.getUserById = (id,res) => {
-    service.getUserById(id,res);
+    model.getUserById(id,res);
 }
 
 exports.getUserByEmail = (email,res) => {
-    service.getUserByEmail(email,res);
+    model.getUserByEmail(email,res);
 }
 
 exports.createUser = (req,res) => {
-    service.createUser(pwd,req,res);
+    model.createUser(pwd,req,res);
 }
