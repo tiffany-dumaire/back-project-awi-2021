@@ -15,5 +15,9 @@ router.post('/create',(req,res,next) => {
     controller.createUser(pwd,req, res);
 });
 
+router.get('/getUser', (req,res,next) => {
+    controller.getUserByEmail(req.body.user_email,res);
+});
+
 
 module.exports = router;

@@ -10,7 +10,7 @@ const jwt = require('jsonwebtoken');
 const cors = require('cors')
 
 var corsOptions = { // les entrées ne viendront que de : 
-    origin: process.env.ORIGIN || "",
+    origin: "http://localhost:4000" || "",
     optionsSuccessStatus: 204 // some legacy browsers (IE11, various SmartTVs) choke on 204 
 }; 
 
@@ -44,5 +44,11 @@ app.get("/api",(req,res) =>{
 require('./routes')(app);
 
 // ----------------------------------------------------
+
+const auth = require('./middleware/auth.middleware');
+
+app.post("/welcome", auth, (req,res) => {
+    res.status(200).send("Welcome 🚀");
+});
 
 // connection.end();
