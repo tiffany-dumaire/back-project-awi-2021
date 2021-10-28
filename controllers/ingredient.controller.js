@@ -4,8 +4,8 @@ exports.getAllIngredients = (res) => {
     model.getAllIngredients(res);
 }
 
-exports.getUserById = (id,res) => {
-    model.getUserById(id,res);
+exports.getAllergenes = (res) => {
+    model.getAllergenes(res);
 }
 
 exports.getUserByEmail = (email,res) => {
