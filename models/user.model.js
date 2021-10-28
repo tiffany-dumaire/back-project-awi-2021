@@ -3,7 +3,6 @@ const table = 'user';
 const primaryKey = 'user_id';
 
 exports.getAllUsers = (res) => {
-    console.log("model");
     db.queryAll('user', (result) => {
         res.status(200).send(result);
     });
