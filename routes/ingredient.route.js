@@ -6,9 +6,8 @@ router.get('/all', (req,res,next) => {
     controller.getAllIngredients(res);
 });
 
-router.get('/byId/:id',(req,res,next) => {
-    const id = req.params['id'];
-    controller.getUserById(id,res);
+router.get('/allergenes',(req,res,next) => {
+    controller.getAllergenes(res);
 });
 
 router.post('/create',(req,res,next) => {
