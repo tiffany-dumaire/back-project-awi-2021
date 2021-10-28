@@ -1,7 +1,7 @@
-const model = require('../models/user.model');
+const model = require('../models/ingredient.model');
 
-exports.getAllUsers = (res) => {
-    model.getAllUsers(res);
+exports.getAllIngredients = (res) => {
+    model.getAllIngredients(res);
 }
 
 exports.getUserById = (id,res) => {

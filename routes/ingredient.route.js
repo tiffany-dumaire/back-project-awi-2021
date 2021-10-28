@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const controller = require('../controllers/user.controller');
+const controller = require('../controllers/ingredient.controller');
 
 router.get('/all', (req,res,next) => {
-    controller.getAllUsers(res);
+    controller.getAllIngredients(res);
 });
 
 router.get('/byId/:id',(req,res,next) => {
