@@ -19,3 +19,9 @@ exports.getByCategorie = (id,res) => {
         res.status(200).send(result);
     });
 }
+
+exports.getAllergenesByCategorie = (id,res) => {
+    db.queryData(`SELECT * FROM ${table} WHERE id_categorie_allergene = ${id}`, (result) => {
+        res.status(200).send(result);
+    });
+}
