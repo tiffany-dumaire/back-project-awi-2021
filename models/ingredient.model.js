@@ -14,8 +14,8 @@ exports.getAllergenes = (res) => {
     })
 }
 
-exports.getUserById = (id,res) => {
-    db.queryData(`SELECT * FROM ${table} WHERE ${primaryKey} = ${id}`, (result) => {
+exports.getByCategorie = (id,res) => {
+    db.queryData(`SELECT * FROM ${table} WHERE id_categorie = ${id}`, (result) => {
         res.status(200).send(result);
     });
 }
