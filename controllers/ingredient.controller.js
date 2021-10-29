@@ -8,10 +8,6 @@ exports.getAllergenes = (res) => {
     model.getAllergenes(res);
 }
 
-exports.getUserByEmail = (email,res) => {
-    model.getUserByEmail(email,res);
-}
-
-exports.createUser = (req,res) => {
-    model.createUser(pwd,req,res);
+exports.getByCategorie = (id,res) => {
+    model.getByCategorie(id,res);
 }

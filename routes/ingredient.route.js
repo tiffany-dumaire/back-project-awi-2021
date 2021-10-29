@@ -10,6 +10,11 @@ router.get('/allergenes',(req,res,next) => {
     controller.getAllergenes(res);
 });
 
+router.get('/byCategorie/:id_categorie', (req,res,next) => {
+    const id = req.params['id_categorie'];
+    controller.getByCategorie(id,res);
+});
+
 router.post('/create',(req,res,next) => {
     controller.createUser(req, res);
 });
