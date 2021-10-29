@@ -8,10 +8,14 @@ exports.getAllergenes = (res) => {
     model.getAllergenes(res);
 }
 
-exports.getByCategorie = (id,res) => {
-    model.getByCategorie(id,res);
+exports.getByCategorie = (id, res) => {
+    model.getByCategorie(id, res);
 }
 
-exports.getAllergenesByCategorie = (id,res) => {
-    model.getAllergenesByCategorie(id,res);
+exports.getAllergenesByCategorie = (id, res) => {
+    model.getAllergenesByCategorie(id, res);
+}
+
+exports.searchIngredients = (search, res) => {
+    model.searchIngredients(search, res);
 }

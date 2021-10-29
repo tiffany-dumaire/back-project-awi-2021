@@ -14,14 +14,20 @@ exports.getAllergenes = (res) => {
     })
 }
 
-exports.getByCategorie = (id,res) => {
+exports.getByCategorie = (id, res) => {
     db.queryData(`SELECT * FROM ${table} WHERE id_categorie = ${id}`, (result) => {
         res.status(200).send(result);
     });
 }
 
-exports.getAllergenesByCategorie = (id,res) => {
+exports.getAllergenesByCategorie = (id, res) => {
     db.queryData(`SELECT * FROM ${table} WHERE id_categorie_allergene = ${id}`, (result) => {
+        res.status(200).send(result);
+    });
+}
+
+exports.searchIngredients = (search, res) => {
+    db.queryData(`SELECT * FROM ${table} WHERE libelle LIKE '%${search}%' ORDER BY ${primaryKey} ASC`, (result) => {
         res.status(200).send(result);
     });
 }
