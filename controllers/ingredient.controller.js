@@ -31,3 +31,7 @@ exports.getAllergeneByCategorie = (id_categorie,id_ingredient, res) => {
 exports.searchIngredients = (search, res) => {
     model.searchIngredients(search, res);
 }
+
+exports.modifyIngredient = (id_ingredient,req, res) => {
+    model.modifyIngredient(id_ingredient, req,res);
+}
