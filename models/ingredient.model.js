@@ -20,8 +20,26 @@ exports.getByCategorie = (id, res) => {
     });
 }
 
+exports.getIngredient = (id_ingredient, res) => {
+    db.queryData(`SELECT * FROM ${table} WHERE ${primaryKey} = ${id_ingredient}`, (result) => {
+        res.status(200).send(result);
+    });
+}
+
+exports.getIngredientByCategorie = (id_categorie,id_ingredient, res) => {
+    db.queryData(`SELECT * FROM ${table} WHERE id_categorie = ${id_categorie} AND ${primaryKey} = ${id_ingredient} ORDER BY ${primaryKey}`, (result) => {
+        res.status(200).send(result);
+    });
+}
+
 exports.getAllergenesByCategorie = (id, res) => {
     db.queryData(`SELECT * FROM ${table} WHERE id_categorie_allergene = ${id}`, (result) => {
+        res.status(200).send(result);
+    });
+}
+
+exports.getAllergeneByCategorie = (id_categorie,id_ingredient, res) => {
+    db.queryData(`SELECT * FROM ${table} WHERE id_categorie_allergene = ${id_categorie} AND ${primaryKey} = ${id_ingredient} ORDER BY ${primaryKey}`, (result) => {
         res.status(200).send(result);
     });
 }
