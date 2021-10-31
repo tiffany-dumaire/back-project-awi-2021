@@ -12,8 +12,20 @@ exports.getByCategorie = (id, res) => {
     model.getByCategorie(id, res);
 }
 
+exports.getIngredient = (id_ingredient, res) => {
+    model.getIngredient(id_ingredient, res);
+}
+
+exports.getIngredientByCategorie = (id_categorie,id_ingredient, res) => {
+    model.getIngredientByCategorie(id_categorie,id_ingredient, res);
+}
+
 exports.getAllergenesByCategorie = (id, res) => {
     model.getAllergenesByCategorie(id, res);
+}
+
+exports.getAllergeneByCategorie = (id_categorie,id_ingredient, res) => {
+    model.getAllergeneByCategorie(id_categorie,id_ingredient, res);
 }
 
 exports.searchIngredients = (search, res) => {

@@ -15,9 +15,26 @@ router.get('/byCategorie/:id_categorie', (req, res, next) => {
     controller.getByCategorie(id, res);
 });
 
+router.get('/ingredient/:id_ingredient', (req, res, next) => {
+    const id_ingredient = req.params['id_ingredient'];
+    controller.getIngredient(id_ingredient, res);
+});
+
+router.get('/byCategorie/:id_categorie/:id_ingredient', (req, res, next) => {
+    const id_categorie = req.params['id_categorie'];
+    const id_ingredient = req.params['id_ingredient'];
+    controller.getIngredientByCategorie(id_categorie,id_ingredient, res);
+});
+
 router.get('/allergenes/byCategorie/:id_categorie_allergene', (req, res, next) => {
     const id = req.params['id_categorie_allergene'];
     controller.getAllergenesByCategorie(id, res);
+});
+
+router.get('/allergenes/byCategorie/:id_categorie_allergene/:id_ingredient', (req, res, next) => {
+    const id_categorie = req.params['id_categorie_allergene'];
+    const id_ingredient = req.params['id_ingredient'];
+    controller.getAllergeneByCategorie(id_categorie,id_ingredient, res);
 });
 
 router.get('/search', (req, res, next) => {
