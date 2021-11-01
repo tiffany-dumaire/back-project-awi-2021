@@ -3,4 +3,5 @@ module.exports = function(app){
     app.use('/ingredients', require('./ingredient.route'));
     app.use('/categories', require('./categorie.route'));
     app.use('/categories_allergenes', require('./categorie_allergenes.route'));
+    app.use('/categories_fiches', require('./categorie_fiches.route'));
 }

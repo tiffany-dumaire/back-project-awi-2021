@@ -47,9 +47,4 @@ router.put('/modify/:id_ingredient',(req,res,next) => {
     controller.modifyIngredient(id_ingredient,req, res);
 });
 
-router.post('/create',(req, res, next) => {
-    controller.createUser(req, res);
-});
-
-
 module.exports = router;
