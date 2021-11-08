@@ -1,4 +1,4 @@
-const db = require('../database/dbConfig');
+const db = require('../database/generic_functions');
 const table = 'categorie';
 const primaryKey = 'id_categorie';
 

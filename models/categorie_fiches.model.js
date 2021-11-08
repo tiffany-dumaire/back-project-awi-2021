@@ -1,4 +1,4 @@
-const db = require('../database/dbConfig');
+const db = require('../database/generic_functions');
 const table = 'categorie_fiches';
 const primaryKey = 'id_categorie_fiche';
 const categorie_fiches = {table: table, primaryKey: primaryKey, attributs: {libelle: 'categorie_fiche', color: 'color_fiche'}};

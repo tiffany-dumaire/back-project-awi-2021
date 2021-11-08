@@ -1,4 +1,4 @@
-const db = require('../database/dbConfig');
+const db = require('../database/generic_functions');
 const table = 'ingredient';
 const primaryKey = 'code';
 
@@ -54,5 +54,4 @@ exports.modifyIngredient = (id_ingredient,req, res) => {
     db.queryData(`UPDATE ${table} SET libelle='${req.body.libelle}',unite='${req.body.unite}',prix_unitaire=${req.body.prix_unitaire},stock=${req.body.stock},allergene=${req.body.allergene},id_categorie=${req.body.id_categorie},id_categorie_allergene=${req.body.id_categorie_allergene} WHERE ${primaryKey}=${id_ingredient}`, (result) => {
         res.status(200).send(result);
     });
-    
 }
