@@ -8,7 +8,7 @@ exports.connect = function(done){
 
 var connectionPool = null;
 
-function getConnection(){
+exports.getConnection = () => {
     if (!connectionPool){
         connectionPool = mysql.createPool({
             connectionLimit: 10,
