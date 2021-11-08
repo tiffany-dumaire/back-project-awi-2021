@@ -1,7 +1,5 @@
 var mysql = require('mysql');
 
-var connection = null;
-
 exports.connect = function(done){
     done(null);
 }
