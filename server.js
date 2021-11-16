@@ -4,7 +4,7 @@ const app = express();
 const cors = require('cors')
 
 var corsOptions = { 
-    origin: process.env.ORIGIN || "",
+    origin: process.env.ORIGIN || process.env.ORIGIN2 || "",
     optionsSuccessStatus: 204
 }; 
 
