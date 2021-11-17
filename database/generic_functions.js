@@ -29,6 +29,13 @@ exports.queryAll = (table, callback) => {
 
 /** POST **/
 
+var val2val = function(val){
+    if(typeof(val)=='string'){
+        val = '"'+val+'"';
+    }
+    return val;
+}
+
 var mapinsertvalues = (values) => {
     var keys = Object.keys(values);
     var setvalue = "(";
@@ -50,22 +57,31 @@ var mapinsertvalues = (values) => {
 }
 
 var mapinsertallvalues = (values) => {
-    var keys = Object.keys(values);
-    var setvalue = "(";
-    for(i=0;i<keys.length;i++){
-        if (keys[i].slice(0,1) != "_"){ 
-            if(i>0) { setvalue += ", "; } 
-            setvalue += keys[i];
+    var key = Object.keys(values);
+    var setvalue = "";
+    for (j = 0; j < key.length; j++) {
+        var keys = Object.keys(values[key[j]]);
+        if (j == 0) {
+            setvalue += "(";
+            for(i=0;i<keys.length;i++){
+                if (keys[i].slice(0,1) != "_"){ 
+                    if(i>0) { setvalue += ", "; } 
+                    setvalue += keys[i];
+                }
+            }
+            setvalue += ") VALUES (";
+        } else {
+            setvalue += ", ("
         }
-    }
-    setvalue += ") VALUES (";
-    for(i=0;i<keys.length;i++){
-        if (keys[i].slice(0,1) != "_"){ 
-            if(i>0) { setvalue += ", "; } 
-            setvalue += `${val2val(values[keys[i]])}`;
+        for(i=0;i<keys.length;i++){
+            if (keys[i].slice(0,1) != "_"){ 
+                if(i>0) { setvalue += ", "; } 
+                setvalue += `${val2val(keys[i])}`;
+            }
         }
+        setvalue += ")";
     }
-    setvalue += ");";
+    console.log(setvalue);
     return setvalue;
 }
 
@@ -74,7 +90,8 @@ exports.insertValue = (table, values, callback) => {
     this.queryData(req,callback);
 }
 
-exports.insertallValue = (table, values, callback) => {
+exports.insertAllValues = (table, values, callback) => {
+    var k = Object.keys(values);
     var req = `INSERT INTO ${table} ${mapinsertallvalues(values)}`;
     this.queryData(req,callback);
 }

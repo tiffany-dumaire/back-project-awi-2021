@@ -32,6 +32,10 @@ exports.searchIngredients = (search, res) => {
     model.searchIngredients(search, res);
 }
 
+exports.createIngredient = (req,res) => {
+    model.createIngredient(req,res);
+}
+
 exports.modifyIngredient = (id_ingredient,req, res) => {
     model.modifyIngredient(id_ingredient, req,res);
 }
