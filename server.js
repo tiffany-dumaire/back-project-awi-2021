@@ -15,6 +15,7 @@ app.listen(port, () => {
 
 app.use(cors(corsOptions)); 
 app.use(express.json()); 
+
 app.use(express.urlencoded({ extended: true })) 
 
 app.get('/', function (req, res) {
