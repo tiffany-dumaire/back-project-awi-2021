@@ -4,22 +4,22 @@ const app = express();
 const cors = require('cors')
 
 var corsOptions = { 
-    origin: [process.env.ORIGIN, process.env.ORIGIN2, ""],
-    default: process.env.ORIGIN,
-    optionsSuccessStatus: 204
+    origin: "http://localhost:4000" || "", 
+    optionsSuccessStatus: 204 
 }; 
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => { 
     console.log(`Serveur à l'écoute sur le port ${port} !`); 
 });
- 
+
 app.use(cors(corsOptions)); 
-app.use(express.json());
+app.use(express.json()); 
+
 app.use(express.urlencoded({ extended: true })) 
 
 app.get('/', function (req, res) {
-    res.send('🚀Le serveur est actuellement à l\'écoute');
+    res.send(`🚀Le serveur est actuellement à l'écoute`);
 });
 
 app.get("/api",(req,res) =>{
