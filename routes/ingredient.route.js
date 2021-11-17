@@ -42,6 +42,10 @@ router.get('/search', (req, res, next) => {
     controller.searchIngredients(search, res);
 });
 
+router.post('/create', (req, res, next) => {
+    controller.createIngredient(req,res);
+});
+
 router.put('/modify/:id_ingredient',(req,res,next) => {
     const id_ingredient = req.params['id_ingredient'];
     controller.modifyIngredient(id_ingredient,req, res);
