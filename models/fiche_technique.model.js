@@ -56,7 +56,7 @@ exports.getDenreesByFTAndOrdre = (id_fiche_technique, ordre, res) => {
                   JOIN phase ON phase.id_phase = phase_ingredient.id_phase
                   JOIN phase_FT ON phase_FT.id_phase = phase.id_phase
                   JOIN quantity_ingredient_phase_ft ON quantity_ingredient_phase_ft.id_phase_ingredient = phase_ingredient.id_phase_ingredient
-                  WHERE phase_FT.id_fiche_technique = ${id_fiche_technique} AND ordre = ${ordre};`, 
+                  WHERE phase_FT.id_fiche_technique = ${id_fiche_technique} AND quantity_ingredient_phase_ft.id_fiche_technique = ${id_fiche_technique} AND ordre = ${ordre};`, 
     (result) => {
         res.status(200).send(result)
     });
