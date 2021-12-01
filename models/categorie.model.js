@@ -7,3 +7,9 @@ exports.getAllCategoriesIngredients = (res) => {
         res.status(200).send(result);
     });
 }
+
+exports.getCategorieById = (id, res) => {
+    db.queryData(`SELECT * FROM ${table} WHERE id_categorie = ${id}`, (result) => {
+        res.status(200).send(result);
+    });
+}
