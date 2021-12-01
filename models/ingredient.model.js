@@ -50,6 +50,18 @@ exports.searchIngredients = (search, res) => {
     });
 }
 
+exports.searchIngredientsByCategorie = (search, id_categorie,res) => {
+    db.queryData(`SELECT * FROM ${table} WHERE libelle LIKE '%${search}%' AND id_categorie=${id_categorie} ORDER BY ${primaryKey} ASC`, (result) => {
+        res.status(200).send(result);
+    });
+}
+
+exports.searchIngredientsByCategorieAllergene = (search, id_categorie_allergene, res) => {
+    db.queryData(`SELECT * FROM ${table} WHERE libelle LIKE '%${search}%' AND id_categorie_allergene=${id_categorie_allergene} ORDER BY ${primaryKey} ASC`, (result) => {
+        res.status(200).send(result);
+    });
+}
+
 exports.createIngredient = (req,res) => {
     db.insertValue(table, req.body, (result) => {
         res.status(200).send(result);

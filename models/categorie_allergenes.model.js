@@ -8,3 +8,9 @@ exports.getAllCategoriesAllergenes = (res) => {
         res.status(200).send(result);
     });
 }
+
+exports.getCategorieAllergeneById = (id, res) => {
+    db.queryData(`SELECT * FROM ${table} WHERE ${primaryKey} = ${id}`, (result) => {
+        res.status(200).send(result);
+    });
+}

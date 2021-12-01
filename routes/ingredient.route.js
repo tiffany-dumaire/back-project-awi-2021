@@ -37,9 +37,21 @@ router.get('/allergenes/byCategorie/:id_categorie_allergene/:id_ingredient', (re
     controller.getAllergeneByCategorie(id_categorie,id_ingredient, res);
 });
 
-router.get('/search', (req, res, next) => {
-    const search = req.body.search;
+router.get('/search/byWord/:word', (req, res, next) => {
+    const search = req.params['word'];
     controller.searchIngredients(search, res);
+});
+
+router.get('/search/byWord/:word/byCategorie/:id_categorie', (req, res, next) => {
+    const search = req.params['word'];
+    const id = req.params['id_categorie'];
+    controller.searchIngredientsByCategorie(search, id, res);
+});
+
+router.get('/search/byWord/:word/byCategorieAllergene/:id_categorie_allergene', (req, res, next) => {
+    const search = req.params['word'];
+    const id = req.params['id_categorie_allergene'];
+    controller.searchIngredientsByCategorieAllergene(search, id, res);
 });
 
 router.post('/create', (req, res, next) => {

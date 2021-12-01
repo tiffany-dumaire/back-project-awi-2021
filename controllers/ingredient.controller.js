@@ -32,6 +32,14 @@ exports.searchIngredients = (search, res) => {
     model.searchIngredients(search, res);
 }
 
+exports.searchIngredientsByCategorie = (search, id_categorie,res) => {
+    model.searchIngredientsByCategorie(search, id_categorie, res);
+}
+
+exports.searchIngredientsByCategorieAllergene = (search, id_categorie_allergene, res) => {
+    model.searchIngredientsByCategorieAllergene(search, id_categorie_allergene, res);
+}
+
 exports.createIngredient = (req,res) => {
     model.createIngredient(req,res);
 }
