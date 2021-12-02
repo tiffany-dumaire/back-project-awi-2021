@@ -23,3 +23,19 @@ exports.getPhasesByFT = (id_fiche_technique, res) => {
 exports.getDenreesByFTAndOrdre = (id_fiche_technique, ordre, res) => {
     model.getDenreesByFTAndOrdre(id_fiche_technique, ordre, res);
 }
+
+exports.searchFTsByIngredients = (search, res) => {
+    model.searchFTsByIngredients(search, res);
+}
+
+exports.searchFTsByIngredientsAndCategorie = (search, id_categorie_fiche, res) => {
+    model.searchFTsByIngredientsAndCategorie(search, id_categorie_fiche, res);
+}
+
+exports.searchFTsByLibelle = (search, res) => {
+    model.searchFTsByLibelle(search, res);
+}
+
+exports.searchFTsByLibelleAndCategorie = (search, id_categorie_fiche, res) => {
+    model.searchFTsByLibelleAndCategorie(search, id_categorie_fiche, res);
+}

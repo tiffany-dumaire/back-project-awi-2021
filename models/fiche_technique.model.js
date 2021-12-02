@@ -31,7 +31,7 @@ exports.getIngredientsByFT = (id_fiche_technique, res) => {
                   JOIN phase_ingredient pi ON pi.id_phase = pft.id_phase
                   JOIN quantity_ingredient_phase_ft qipft ON qipft.id_phase_ingredient = pi.id_phase_ingredient
                   JOIN ingredient i ON i.code = pi.code
-                  WHERE pft.id_fiche_technique = ${id_fiche_technique}
+                  WHERE pft.${primaryKey} = ${id_fiche_technique}
                   ORDER BY ordre ASC, code ASC`, 
     (result) => {
         res.status(200).send(result);
@@ -42,7 +42,7 @@ exports.getPhasesByFT = (id_fiche_technique, res) => {
     db.queryData(`SELECT phase.*, phase_FT.ordre
                   FROM phase
                   JOIN phase_FT ON phase.id_phase = phase_FT.id_phase
-                  WHERE phase_FT.id_fiche_technique = ${id_fiche_technique}
+                  WHERE phase_FT.${primaryKey} = ${id_fiche_technique}
                   ORDER BY phase_FT.ordre`,
     (result) => {
         res.status(200).send(result);
@@ -56,8 +56,56 @@ exports.getDenreesByFTAndOrdre = (id_fiche_technique, ordre, res) => {
                   JOIN phase ON phase.id_phase = phase_ingredient.id_phase
                   JOIN phase_FT ON phase_FT.id_phase = phase.id_phase
                   JOIN quantity_ingredient_phase_ft ON quantity_ingredient_phase_ft.id_phase_ingredient = phase_ingredient.id_phase_ingredient
-                  WHERE phase_FT.id_fiche_technique = ${id_fiche_technique} AND quantity_ingredient_phase_ft.id_fiche_technique = ${id_fiche_technique} AND ordre = ${ordre};`, 
+                  WHERE phase_FT.${primaryKey} = ${id_fiche_technique} AND quantity_ingredient_phase_ft.${primaryKey} = ${id_fiche_technique} AND ordre = ${ordre};`, 
     (result) => {
         res.status(200).send(result)
+    });
+}
+
+exports.searchFTsByIngredients = (search, res) => {
+    db.queryData(`SELECT DISTINCT ${table}.* 
+                  FROM ${table}
+                  JOIN phase_FT ON phase_FT.${primaryKey} = ${table}.${primaryKey}
+                  JOIN phase_ingredient ON phase_ingredient.id_phase = phase_FT.id_phase
+                  JOIN ingredient ON ingredient.code = phase_ingredient.code
+                  WHERE ingredient.libelle LIKE '%${search}%' 
+                  ORDER BY ${table}.${primaryKey} ASC`, 
+    (result) => {
+        res.status(200).send(result);
+    });
+}
+
+exports.searchFTsByIngredientsAndCategorie = (search, id_categorie_fiche, res) => {
+    db.queryData(`SELECT DISTINCT ${table}.* 
+                  FROM ${table}
+                  JOIN phase_FT ON phase_FT.${primaryKey} = ${table}.${primaryKey}
+                  JOIN phase_ingredient ON phase_ingredient.id_phase = phase_FT.id_phase
+                  JOIN ingredient ON ingredient.code = phase_ingredient.code
+                  WHERE ingredient.libelle LIKE '%${search}%' 
+                  AND ${table}.id_categorie_fiche = ${id_categorie_fiche}
+                  ORDER BY ${table}.${primaryKey} ASC`, 
+    (result) => {
+        res.status(200).send(result);
+    });
+}
+
+exports.searchFTsByLibelle = (search, res) => {
+    db.queryData(`SELECT DISTINCT ${table}.* 
+                  FROM ${table}
+                  WHERE ${table}.libelle_fiche_technique LIKE '%${search}%' 
+                  ORDER BY ${table}.${primaryKey} ASC`, 
+    (result) => {
+        res.status(200).send(result);
+    });
+}
+
+exports.searchFTsByLibelleAndCategorie = (search, id_categorie_fiche, res) => {
+    db.queryData(`SELECT DISTINCT ${table}.* 
+                  FROM ${table}
+                  WHERE ${table}.libelle_fiche_technique LIKE '%${search}%' 
+                  AND ${table}.id_categorie_fiche = ${id_categorie_fiche}
+                  ORDER BY ${table}.${primaryKey} ASC`, 
+    (result) => {
+        res.status(200).send(result);
     });
 }
