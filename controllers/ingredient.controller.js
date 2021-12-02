@@ -4,6 +4,10 @@ exports.getAllIngredients = (res) => {
     model.getAllIngredients(res);
 }
 
+exports.getAllIds = (res) => {
+    model.getAllIds(res);
+}
+
 exports.getAllergenes = (res) => {
     model.getAllergenes(res);
 }
