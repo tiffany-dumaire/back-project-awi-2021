@@ -32,4 +32,26 @@ router.get('/denrees/:id_fiche_technique/:ordre', (req, res, next) => {
     controller.getDenreesByFTAndOrdre(id, ordre, res);
 });
 
+router.get('/search/byIngredients/:word', (req, res, next) => {
+    const search = req.params['word'];
+    controller.searchFTsByIngredients(search, res);
+});
+
+router.get('/search/byIngredients/:word/:id_categorie_fiche', (req, res, next) => {
+    const search = req.params['word'];
+    const id = req.params['id_categorie_fiche'];
+    controller.searchFTsByIngredientsAndCategorie(search, id, res);
+});
+
+router.get('/search/byLibelle/:word', (req, res, next) => {
+    const search = req.params['word'];
+    controller.searchFTsByLibelle(search, res);
+});
+
+router.get('/search/byLibelle/:word/:id_categorie_fiche', (req, res, next) => {
+    const search = req.params['word'];
+    const id = req.params['id_categorie_fiche'];
+    controller.searchFTsByLibelleAndCategorie(search, id, res);
+});
+
 module.exports = router;
