@@ -6,6 +6,10 @@ router.get('/all', (req, res, next) => {
     controller.getAllIngredients(res);
 });
 
+router.get('/allIds', (req, res, next) => {
+    controller.getAllIds(res);
+});
+
 router.get('/allergenes',(req, res, next) => {
     controller.getAllergenes(res);
 });
