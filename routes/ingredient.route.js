@@ -67,4 +67,20 @@ router.put('/modify/:id_ingredient',(req,res,next) => {
     controller.modifyIngredient(id_ingredient,req, res);
 });
 
+/** STOCK INGREDIENT **/
+
+router.get('/stocks', (req, res, next) => {
+    controller.getAllStocks(res);
+});
+
+router.get('/stocks/byCategorie/:id_categorie', (req, res, next) => {
+    const id = req.params['id_categorie'];
+    controller.getStocksByCategorie(id, res);
+});
+
+router.get('/stocks/modify/:code', (req, res, next) => {
+    const code = req.params['code'];
+    model.modifyStock(code, req, res);
+});
+
 module.exports = router;
