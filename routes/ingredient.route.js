@@ -27,7 +27,7 @@ router.get('/ingredient/:id_ingredient', (req, res, next) => {
 router.get('/byCategorie/:id_categorie/:id_ingredient', (req, res, next) => {
     const id_categorie = req.params['id_categorie'];
     const id_ingredient = req.params['id_ingredient'];
-    controller.getIngredientByCategorie(id_categorie,id_ingredient, res);
+    controller.getIngredientByCategorie(id_categorie, id_ingredient, res);
 });
 
 router.get('/allergenes/byCategorie/:id_categorie_allergene', (req, res, next) => {
@@ -38,7 +38,7 @@ router.get('/allergenes/byCategorie/:id_categorie_allergene', (req, res, next) =
 router.get('/allergenes/byCategorie/:id_categorie_allergene/:id_ingredient', (req, res, next) => {
     const id_categorie = req.params['id_categorie_allergene'];
     const id_ingredient = req.params['id_ingredient'];
-    controller.getAllergeneByCategorie(id_categorie,id_ingredient, res);
+    controller.getAllergeneByCategorie(id_categorie, id_ingredient, res);
 });
 
 router.get('/search/byWord/:word', (req, res, next) => {
@@ -59,12 +59,12 @@ router.get('/search/byWord/:word/byCategorieAllergene/:id_categorie_allergene', 
 });
 
 router.post('/create', (req, res, next) => {
-    controller.createIngredient(req,res);
+    controller.createIngredient(req, res);
 });
 
-router.put('/modify/:id_ingredient',(req,res,next) => {
+router.put('/modify/:id_ingredient',(req, res, next) => {
     const id_ingredient = req.params['id_ingredient'];
-    controller.modifyIngredient(id_ingredient,req, res);
+    controller.modifyIngredient(id_ingredient, req, res);
 });
 
 /** STOCK INGREDIENT **/

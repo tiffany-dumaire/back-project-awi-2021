@@ -48,7 +48,7 @@ exports.createIngredient = (req, res) => {
     model.createIngredient(req, res);
 }
 
-exports.modifyIngredient = (id_ingredient,req, res) => {
+exports.modifyIngredient = (id_ingredient, req, res) => {
     model.modifyIngredient(id_ingredient, req, res);
 }
 
@@ -62,6 +62,6 @@ exports.getStocksByCategorie = (id_categorie, res) => {
     model.getStocksByCategorie(id_categorie, res);
 }
 
-exports.modifyStock = (code,req, res) => {
+exports.modifyStock = (code, req, res) => {
     model.modifyStock(code, req, res);
 }
