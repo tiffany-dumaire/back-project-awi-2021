@@ -34,7 +34,7 @@ exports.getIngredient = (id_ingredient, res) => {
     });
 }
 
-exports.getIngredientByCategorie = (id_categorie,id_ingredient, res) => {
+exports.getIngredientByCategorie = (id_categorie, id_ingredient, res) => {
     db.queryData(`SELECT * FROM ${table} WHERE id_categorie = ${id_categorie} AND ${primaryKey} = ${id_ingredient} ORDER BY ${primaryKey}`, (result) => {
         res.status(200).send(result);
     });
@@ -46,7 +46,7 @@ exports.getAllergenesByCategorie = (id, res) => {
     });
 }
 
-exports.getAllergeneByCategorie = (id_categorie,id_ingredient, res) => {
+exports.getAllergeneByCategorie = (id_categorie, id_ingredient, res) => {
     db.queryData(`SELECT * FROM ${table} WHERE id_categorie_allergene = ${id_categorie} AND ${primaryKey} = ${id_ingredient} ORDER BY ${primaryKey}`, (result) => {
         res.status(200).send(result);
     });
@@ -60,7 +60,7 @@ exports.searchIngredients = (search, res) => {
     });
 }
 
-exports.searchIngredientsByCategorie = (search, id_categorie,res) => {
+exports.searchIngredientsByCategorie = (search, id_categorie, res) => {
     db.queryData(`SELECT * FROM ${table} WHERE libelle LIKE '%${search}%' AND id_categorie=${id_categorie} ORDER BY ${primaryKey} ASC`, (result) => {
         res.status(200).send(result);
     });
@@ -74,7 +74,7 @@ exports.searchIngredientsByCategorieAllergene = (search, id_categorie_allergene,
 
 /** POST **/
 
-exports.createIngredient = (req,res) => {
+exports.createIngredient = (req, res) => {
     db.insertValue(table, req.body, (result) => {
         res.status(200).send(result);
     });
@@ -82,7 +82,7 @@ exports.createIngredient = (req,res) => {
 
 /** PUT **/
 
-exports.modifyIngredient = (id_ingredient,req, res) => {
+exports.modifyIngredient = (id_ingredient, req, res) => {
     db.queryData(`UPDATE ${table} SET libelle='${req.body.libelle}',unite='${req.body.unite}',prix_unitaire=${req.body.prix_unitaire},stock=${req.body.stock},allergene=${req.body.allergene},id_categorie=${req.body.id_categorie},id_categorie_allergene=${req.body.id_categorie_allergene} WHERE ${primaryKey}=${id_ingredient}`, (result) => {
         res.status(200).send(result);
     });
@@ -102,7 +102,7 @@ exports.getStocksByCategorie = (id_categorie, res) => {
     });
 }
 
-exports.modifyStock = (code,req, res) => {
+exports.modifyStock = (code, req, res) => {
     db.queryData(`UPDATE ${table} SET stock=${req.body.stock} WHERE ${primaryKey}=${code}`, (result) => {
         res.status(200).send(result);
     });
