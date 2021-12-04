@@ -10,7 +10,7 @@ exports.createPhase = (req, res) => {
 }
 
 exports.modifyPhase = (id, req, res) => {
-    db.queryData(`UPDATE ${table} SET libelle_phase=${req.body.libelle_phase}, libelle_denrees=${req.body.libelle_denrees}, description_phase=${req.body.description_phase}, duree_phase=${req.body.duree_phase} WHERE ${primaryKey}=${id}`, (result) => {
+    db.queryData(`UPDATE ${table} SET libelle_phase="${req.body.libelle_phase}", libelle_denrees="${req.body.libelle_denrees}", description_phase="${req.body.description_phase}", duree_phase=${req.body.duree_phase} WHERE ${primaryKey}=${id}`, (result) => {
         res.status(200).send(result);
     });
 }

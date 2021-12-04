@@ -4,8 +4,8 @@ exports.createPhase = (req, res) => {
     model.createPhase(req, res);
 }
 
-exports.modifyPhase = (req, res) => {
-    model.modifyPhase(req, res);
+exports.modifyPhase = (id_phase, req, res) => {
+    model.modifyPhase(id_phase, req, res);
 }
 
 exports.addIngredients = (req,res) => {
