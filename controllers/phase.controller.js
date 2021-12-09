@@ -8,6 +8,10 @@ exports.modifyPhase = (id_phase, req, res) => {
     model.modifyPhase(id_phase, req, res);
 }
 
-exports.addIngredients = (req,res) => {
-    model.addIngredients(req, res);
+exports.addIngredient = (req, res) => {
+    model.addIngredient(req, res);
+}
+
+exports.pullIngredient = (id_phase_ingredient, res) => {
+    model.pullIngredient(id_phase_ingredient, res);
 }

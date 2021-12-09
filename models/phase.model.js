@@ -2,6 +2,7 @@ const db = require('../database/generic_functions');
 const table = 'phase';
 const primaryKey = 'id_phase';
 const table2 = 'phase_ingredient';
+const primaryKey2 = 'id_phase_ingredient';
 
 exports.createPhase = (req, res) => {
     db.insertValue(table, req.body, (result) => {
@@ -15,9 +16,14 @@ exports.modifyPhase = (id, req, res) => {
     });
 }
 
-//problem for the moment
-exports.addIngredients = (req, res) => {
-    db.insertAllValues(table2, req.body, (result) => {
+exports.addIngredient = (req, res) => {
+    db.insertValue(table2, req.body, (result) => {
+        res.status(200).send(result);
+    });
+}
+
+exports.pullIngredient = (id_phase_ingredient, res) => {
+    db.deleteValue(table2, primaryKey2, id_phase_ingredient, (result) => {
         res.status(200).send(result);
     });
 }
