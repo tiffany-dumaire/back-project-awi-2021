@@ -11,8 +11,14 @@ router.put('/modify/:id_phase', (req, res, next) => {
     controller.modifyPhase(id, req, res);
 });
 
-router.post('/creates', (req, res, next) => {
-    controller.addIngredients(req, res);
+router.post('/add_ingredient', (req, res, next) => {
+    controller.addIngredient(req, res);
+});
+
+
+router.delete('/pull_ingredient/:id_phase_ingredient', (req, res, next) => {
+    const id = req.params['id_phase_ingredient'];
+    controller.pullIngredient(id, res);
 });
 
 module.exports = router;
