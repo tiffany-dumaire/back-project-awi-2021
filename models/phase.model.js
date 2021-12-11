@@ -16,6 +16,18 @@ exports.modifyPhase = (id, req, res) => {
     });
 }
 
+exports.getPhase = (id_phase, res) => {
+    db.queryData(`SELECT * FROM ${table} WHERE ${primaryKey}=${id_phase}`, (result) => {
+        res.status(200).send(result);
+    });
+}
+
+exports.getDenrees = (id_phase, res) => {
+    db.queryData(`SELECT * FROM ingredient i JOIN phase_ingredient pi ON pi.code = i.code WHERE pi.${primaryKey}=${id_phase}`, (result) => {
+        res.status(200).send(result);
+    });
+}
+
 exports.addIngredient = (req, res) => {
     db.insertValue(table2, req.body, (result) => {
         res.status(200).send(result);
