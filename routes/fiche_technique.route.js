@@ -54,4 +54,8 @@ router.get('/search/byLibelle/:word/:id_categorie_fiche', (req, res, next) => {
     controller.searchFTsByLibelleAndCategorie(search, id, res);
 });
 
+router.post('/create', (req, res, next) => {
+    controller.createFT(req, res);
+});
+
 module.exports = router;
