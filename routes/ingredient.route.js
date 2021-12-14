@@ -78,9 +78,9 @@ router.get('/stocks/byCategorie/:id_categorie', (req, res, next) => {
     controller.getStocksByCategorie(id, res);
 });
 
-router.get('/stocks/modify/:code', (req, res, next) => {
+router.put('/stocks/modify/:code', (req, res, next) => {
     const code = req.params['code'];
-    model.modifyStock(code, req, res);
+    controller.modifyStock(code, req, res);
 });
 
 module.exports = router;
