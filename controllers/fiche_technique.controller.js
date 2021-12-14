@@ -39,3 +39,7 @@ exports.searchFTsByLibelle = (search, res) => {
 exports.searchFTsByLibelleAndCategorie = (search, id_categorie_fiche, res) => {
     model.searchFTsByLibelleAndCategorie(search, id_categorie_fiche, res);
 }
+
+exports.createFT = (req, res) => {
+    model.createFT(req, res);
+}

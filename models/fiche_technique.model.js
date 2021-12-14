@@ -109,3 +109,9 @@ exports.searchFTsByLibelleAndCategorie = (search, id_categorie_fiche, res) => {
         res.status(200).send(result);
     });
 }
+
+exports.createFT = (req, res) => {
+    db.insertValue(table, req.body, (result) => {
+        res.status(200).send(result);
+    });
+}
