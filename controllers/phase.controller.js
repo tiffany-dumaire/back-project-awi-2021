@@ -24,6 +24,10 @@ exports.addIngredient = (req, res) => {
     model.addIngredient(req, res);
 }
 
+exports.addOrdrePhaseFT = (req, res) => {
+    model.addOrdrePhaseFT(req, res);
+};
+
 exports.pullIngredient = (id_phase_ingredient, res) => {
     model.pullIngredient(id_phase_ingredient, res);
 }

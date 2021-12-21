@@ -3,6 +3,8 @@ const table = 'phase';
 const primaryKey = 'id_phase';
 const table2 = 'phase_ingredient';
 const primaryKey2 = 'id_phase_ingredient';
+const table3 = 'phase_FT';
+const primaryKey3 = 'id_phase_ft';
 
 exports.createPhase = (req, res) => {
     db.insertValue(table, req.body, (result) => {
@@ -39,6 +41,12 @@ exports.addIngredient = (req, res) => {
         res.status(200).send(result);
     });
 }
+
+exports.addOrdrePhaseFT = (req, res) => {
+    db.insertValue(table3, req.body, (result) => {
+        res.status(200).send(result);
+    });
+};
 
 exports.pullIngredient = (id_phase_ingredient, res) => {
     db.deleteValue(table2, primaryKey2, id_phase_ingredient, (result) => {
