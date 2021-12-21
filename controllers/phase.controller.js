@@ -4,6 +4,10 @@ exports.createPhase = (req, res) => {
     model.createPhase(req, res);
 }
 
+exports.getPhases = (res) => {
+    model.getPhases(res);
+}
+
 exports.modifyPhase = (id_phase, req, res) => {
     model.modifyPhase(id_phase, req, res);
 }

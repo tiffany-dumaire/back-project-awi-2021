@@ -6,6 +6,10 @@ router.post('/create', (req, res, next) => {
     controller.createPhase(req, res);
 });
 
+router.get('/all', (req, res, next) => {
+    controller.getPhases(res);
+});
+
 router.put('/modify/:id_phase', (req, res, next) => {
     const id = req.params['id_phase'];
     controller.modifyPhase(id, req, res);
