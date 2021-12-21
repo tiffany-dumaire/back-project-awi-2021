@@ -29,6 +29,9 @@ router.post('/add_ingredient', (req, res, next) => {
     controller.addIngredient(req, res);
 });
 
+router.post('/phase_FT', (req, res, next) => {
+    controller.addOrdrePhaseFT(req, res);
+});
 
 router.delete('/pull_ingredient/:id_phase_ingredient', (req, res, next) => {
     const id = req.params['id_phase_ingredient'];
