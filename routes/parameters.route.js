@@ -7,4 +7,9 @@ router.get('/:parameter', (req, res, next) => {
     controller.getParameter(libelle, res);
 });
 
+router.put('/:parameter', (req, res, next) => {
+    const libelle = req.params['parameter'];
+    controller.modifyParameter(libelle, req, res);
+});
+
 module.exports = router;
