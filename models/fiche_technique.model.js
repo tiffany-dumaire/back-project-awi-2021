@@ -3,7 +3,10 @@ const table = 'fiche_technique';
 const primaryKey = 'id_fiche_technique'
 
 exports.getAllFichesTechniques = (res) => {
-    db.queryAll(table, (result) => {
+    db.queryData(`SELECT ${table}.*, responsable.intitule_responsable 
+                  FROM ${table}  
+                  JOIN responsable ON responsable.id_responsable = ${table}.id_responsable`, 
+    (result) => {
         res.status(200).send(result);
     });
 }
@@ -20,7 +23,7 @@ exports.getInfosFiche = (id, res) => {
 }
 
 exports.getByCategorie = (id, res) => {
-    db.queryData(`SELECT * FROM ${table} WHERE id_categorie_fiche = ${id}`, (result) => {
+    db.queryData(`SELECT ${table}.*, responsable.intitule_responsable FROM ${table} JOIN responsable ON responsable.id_responsable = ${table}.id_responsable WHERE id_categorie_fiche = ${id}`, (result) => {
         res.status(200).send(result);
     });
 }
@@ -63,8 +66,9 @@ exports.getDenreesByFTAndOrdre = (id_fiche_technique, ordre, res) => {
 }
 
 exports.searchFTsByIngredients = (search, res) => {
-    db.queryData(`SELECT DISTINCT ${table}.* 
+    db.queryData(`SELECT DISTINCT ${table}.*, responsable.intitule_responsable
                   FROM ${table}
+                  JOIN responsable ON responsable.id_responsable = ${table}.id_responsable
                   JOIN phase_FT ON phase_FT.${primaryKey} = ${table}.${primaryKey}
                   JOIN phase_ingredient ON phase_ingredient.id_phase = phase_FT.id_phase
                   JOIN ingredient ON ingredient.code = phase_ingredient.code
@@ -76,8 +80,9 @@ exports.searchFTsByIngredients = (search, res) => {
 }
 
 exports.searchFTsByIngredientsAndCategorie = (search, id_categorie_fiche, res) => {
-    db.queryData(`SELECT DISTINCT ${table}.* 
+    db.queryData(`SELECT DISTINCT ${table}.*, responsable.intitule_responsable
                   FROM ${table}
+                  JOIN responsable ON responsable.id_responsable = ${table}.id_responsable
                   JOIN phase_FT ON phase_FT.${primaryKey} = ${table}.${primaryKey}
                   JOIN phase_ingredient ON phase_ingredient.id_phase = phase_FT.id_phase
                   JOIN ingredient ON ingredient.code = phase_ingredient.code
@@ -90,8 +95,9 @@ exports.searchFTsByIngredientsAndCategorie = (search, id_categorie_fiche, res) =
 }
 
 exports.searchFTsByLibelle = (search, res) => {
-    db.queryData(`SELECT DISTINCT ${table}.* 
+    db.queryData(`SELECT DISTINCT ${table}.*, responsable.intitule_responsable
                   FROM ${table}
+                  JOIN responsable ON responsable.id_responsable = ${table}.id_responsable
                   WHERE ${table}.libelle_fiche_technique LIKE '%${search}%' 
                   ORDER BY ${table}.${primaryKey} ASC`, 
     (result) => {
@@ -100,8 +106,9 @@ exports.searchFTsByLibelle = (search, res) => {
 }
 
 exports.searchFTsByLibelleAndCategorie = (search, id_categorie_fiche, res) => {
-    db.queryData(`SELECT DISTINCT ${table}.* 
+    db.queryData(`SELECT DISTINCT ${table}.*, responsable.intitule_responsable
                   FROM ${table}
+                  JOIN responsable ON responsable.id_responsable = ${table}.id_responsable
                   WHERE ${table}.libelle_fiche_technique LIKE '%${search}%' 
                   AND ${table}.id_categorie_fiche = ${id_categorie_fiche}
                   ORDER BY ${table}.${primaryKey} ASC`, 
