@@ -55,19 +55,19 @@ exports.getAllergeneByCategorie = (id_categorie, id_ingredient, res) => {
 /** SEARCH **/
 
 exports.searchIngredients = (search, res) => {
-    db.queryData(`SELECT * FROM ${table} WHERE libelle LIKE '%${search}%' ORDER BY ${primaryKey} ASC`, (result) => {
+    db.queryData(`SELECT * FROM ${table} WHERE LOWER(libelle) LIKE LOWER('%${search}%') ORDER BY ${primaryKey} ASC`, (result) => {
         res.status(200).send(result);
     });
 }
 
 exports.searchIngredientsByCategorie = (search, id_categorie, res) => {
-    db.queryData(`SELECT * FROM ${table} WHERE libelle LIKE '%${search}%' AND id_categorie=${id_categorie} ORDER BY ${primaryKey} ASC`, (result) => {
+    db.queryData(`SELECT * FROM ${table} WHERE LOWER(libelle) LIKE LOWER('%${search}%') AND id_categorie=${id_categorie} ORDER BY ${primaryKey} ASC`, (result) => {
         res.status(200).send(result);
     });
 }
 
 exports.searchIngredientsByCategorieAllergene = (search, id_categorie_allergene, res) => {
-    db.queryData(`SELECT * FROM ${table} WHERE libelle LIKE '%${search}%' AND id_categorie_allergene=${id_categorie_allergene} ORDER BY ${primaryKey} ASC`, (result) => {
+    db.queryData(`SELECT * FROM ${table} WHERE LOWER(libelle) LIKE LOWER('%${search}%') AND id_categorie_allergene=${id_categorie_allergene} ORDER BY ${primaryKey} ASC`, (result) => {
         res.status(200).send(result);
     });
 }
