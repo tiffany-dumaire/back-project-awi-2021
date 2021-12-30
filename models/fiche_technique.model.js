@@ -72,7 +72,7 @@ exports.searchFTsByIngredients = (search, res) => {
                   JOIN phase_FT ON phase_FT.${primaryKey} = ${table}.${primaryKey}
                   JOIN phase_ingredient ON phase_ingredient.id_phase = phase_FT.id_phase
                   JOIN ingredient ON ingredient.code = phase_ingredient.code
-                  WHERE ingredient.libelle LIKE '%${search}%' 
+                  WHERE LOWER(ingredient.libelle) LIKE LOWER('%${search}%') 
                   ORDER BY ${table}.${primaryKey} ASC`, 
     (result) => {
         res.status(200).send(result);
@@ -86,7 +86,7 @@ exports.searchFTsByIngredientsAndCategorie = (search, id_categorie_fiche, res) =
                   JOIN phase_FT ON phase_FT.${primaryKey} = ${table}.${primaryKey}
                   JOIN phase_ingredient ON phase_ingredient.id_phase = phase_FT.id_phase
                   JOIN ingredient ON ingredient.code = phase_ingredient.code
-                  WHERE ingredient.libelle LIKE '%${search}%' 
+                  WHERE LOWER(ingredient.libelle) LIKE LOWER('%${search}%') 
                   AND ${table}.id_categorie_fiche = ${id_categorie_fiche}
                   ORDER BY ${table}.${primaryKey} ASC`, 
     (result) => {
@@ -98,7 +98,7 @@ exports.searchFTsByLibelle = (search, res) => {
     db.queryData(`SELECT DISTINCT ${table}.*, responsable.intitule_responsable
                   FROM ${table}
                   JOIN responsable ON responsable.id_responsable = ${table}.id_responsable
-                  WHERE ${table}.libelle_fiche_technique LIKE '%${search}%' 
+                  WHERE LOWER(${table}.libelle_fiche_technique) LIKE LOWER('%${search}%') 
                   ORDER BY ${table}.${primaryKey} ASC`, 
     (result) => {
         res.status(200).send(result);
@@ -109,7 +109,7 @@ exports.searchFTsByLibelleAndCategorie = (search, id_categorie_fiche, res) => {
     db.queryData(`SELECT DISTINCT ${table}.*, responsable.intitule_responsable
                   FROM ${table}
                   JOIN responsable ON responsable.id_responsable = ${table}.id_responsable
-                  WHERE ${table}.libelle_fiche_technique LIKE '%${search}%' 
+                  WHERE LOWER(${table}.libelle_fiche_technique) LIKE LOWER('%${search}%') 
                   AND ${table}.id_categorie_fiche = ${id_categorie_fiche}
                   ORDER BY ${table}.${primaryKey} ASC`, 
     (result) => {
