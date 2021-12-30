@@ -58,4 +58,11 @@ router.post('/create', (req, res, next) => {
     controller.createFT(req, res);
 });
 
+/** DELETE **/
+
+router.delete('/delete/:id_fiche_technique', (req, res, next) => {
+    const id = req.params['id_fiche_technique'];
+    controller.deleteFT(id, res);
+});
+
 module.exports = router;

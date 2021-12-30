@@ -43,3 +43,9 @@ exports.searchFTsByLibelleAndCategorie = (search, id_categorie_fiche, res) => {
 exports.createFT = (req, res) => {
     model.createFT(req, res);
 }
+
+/** DELETE **/
+
+exports.deleteFT = (id_fiche_technique, res) => {
+    model.deleteFT(id_fiche_technique, res);
+}
