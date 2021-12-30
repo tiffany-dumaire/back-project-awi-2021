@@ -122,3 +122,11 @@ exports.createFT = (req, res) => {
         res.status(200).send(result);
     });
 }
+
+/** DELETE **/
+
+exports.deleteFT = (id_fiche_technique, res) => {
+    db.deleteValue(table, primaryKey, id_fiche_technique, (result) => {
+        res.status(200).send(result);
+    });
+}
