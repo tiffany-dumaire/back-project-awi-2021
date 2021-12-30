@@ -13,3 +13,9 @@ exports.getCategorieById = (id, res) => {
         res.status(200).send(result);
     });
 }
+
+exports.modifyCategory = (id_categorie, req, res) => {
+    db.queryData(`UPDATE ${table} SET categorie='${req.body.categorie}', color='${req.body.color}' WHERE ${primaryKey}=${id_categorie}`, (result) => {
+        res.status(200).send(result);
+    });
+}

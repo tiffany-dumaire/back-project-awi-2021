@@ -14,3 +14,9 @@ exports.getCategorieAllergeneById = (id, res) => {
         res.status(200).send(result);
     });
 }
+
+exports.modifyCategoryAllergene = (id_categorie_allergene, req, res) => {
+    db.queryData(`UPDATE ${table} SET categorie_allergene='${req.body.categorie_allergene}', color_allergene='${req.body.color_allergene}' WHERE ${primaryKey}=${id_categorie_allergene}`, (result) => {
+        res.status(200).send(result);
+    });
+}

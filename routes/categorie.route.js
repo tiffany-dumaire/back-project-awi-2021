@@ -11,4 +11,9 @@ router.get('/byID/:id_categorie', (req, res, next) => {
     controller.getCategorieById(id, res);
 })
 
+router.put('/modify/:id_categorie', (req, res, next) => {
+    const id = req.params['id_categorie'];
+    controller.modifyCategory(id, req, res);
+});
+
 module.exports = router;

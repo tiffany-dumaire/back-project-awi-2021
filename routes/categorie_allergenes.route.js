@@ -9,6 +9,11 @@ router.get('/all', (req, res, next) => {
 router.get('/byID/:id_categorie_allergene', (req, res, next) => {
     const id = req.params['id_categorie_allergene'];
     controller.getCategorieAllergeneById(id, res);
-})
+});
+
+router.put('/modify/:id_categorie_allergene', (req, res, next) => {
+    const id = req.params['id_categorie_allergene'];
+    controller.modifyCategoryAllergene(id, req, res);
+});
 
 module.exports = router;
