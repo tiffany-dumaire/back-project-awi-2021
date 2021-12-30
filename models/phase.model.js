@@ -53,3 +53,11 @@ exports.pullIngredient = (id_phase_ingredient, res) => {
         res.status(200).send(result);
     });
 }
+
+/** DELETE **/
+
+exports.deletePhase = (id_phase, res) => {
+    db.deleteValue(table, primaryKey, id_phase, (result) => {
+        res.status(200).send(result);
+    });
+}
