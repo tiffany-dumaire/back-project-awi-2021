@@ -31,3 +31,9 @@ exports.addOrdrePhaseFT = (req, res) => {
 exports.pullIngredient = (id_phase_ingredient, res) => {
     model.pullIngredient(id_phase_ingredient, res);
 }
+
+/** DELETE **/
+
+exports.deletePhase = (id_phase, res) => {
+    model.deletePhase(id_phase, res);
+}

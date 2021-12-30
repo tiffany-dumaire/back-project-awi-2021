@@ -33,9 +33,16 @@ router.post('/phase_FT', (req, res, next) => {
     controller.addOrdrePhaseFT(req, res);
 });
 
+/** DELETE **/
+
 router.delete('/pull_ingredient/:id_phase_ingredient', (req, res, next) => {
     const id = req.params['id_phase_ingredient'];
     controller.pullIngredient(id, res);
+});
+
+router.delete('/delete/:id_phase', (req, res, next) => {
+    const id = req.params['id_phase'];
+    controller.deletePhase(id, res);
 });
 
 module.exports = router;
