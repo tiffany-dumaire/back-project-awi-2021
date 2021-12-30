@@ -83,4 +83,9 @@ router.put('/stocks/modify/:code', (req, res, next) => {
     controller.modifyStock(code, req, res);
 });
 
+router.delete('/delete/:code', (req, res, next) => {
+    const code = req.params['code'];
+    controller.deleteIngredient(code, res);
+});
+
 module.exports = router;
