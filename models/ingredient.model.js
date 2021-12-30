@@ -88,6 +88,14 @@ exports.modifyIngredient = (id_ingredient, req, res) => {
     });
 }
 
+/** DELETE **/
+
+exports.deleteIngredient = (code, res) => {
+    db.deleteValue(table, primaryKey, code, (result) => {
+        res.status(200).send(result);
+    });
+}
+
 /** STOCK INGREDIENT **/
 
 exports.getAllStocks = (res) => {

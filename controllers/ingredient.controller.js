@@ -52,6 +52,12 @@ exports.modifyIngredient = (id_ingredient, req, res) => {
     model.modifyIngredient(id_ingredient, req, res);
 }
 
+/** DELETE **/
+
+exports.deleteIngredient = (code, res) => {
+    model.deleteIngredient(code, res);
+}
+
 /** STOCK INGREDIENT **/
 
 exports.getAllStocks = (res) => {
