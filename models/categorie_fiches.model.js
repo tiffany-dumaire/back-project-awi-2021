@@ -8,3 +8,15 @@ exports.getAllCategoriesFiches = (res) => {
         res.status(200).send(result);
     });
 }
+
+exports.getCategorieFicheById = (id, res) => {
+    db.queryData(`SELECT * FROM ${table} WHERE ${primaryKey} = ${id}`, (result) => {
+        res.status(200).send(result);
+    });
+}
+
+exports.modifyCategoryFiche = (id_categorie_fiche, req, res) => {
+    db.queryData(`UPDATE ${table} SET categorie_fiche='${req.body.categorie_fiche}', color_fiche='${req.body.color_fiche}' WHERE ${primaryKey}=${id_categorie_fiche}`, (result) => {
+        res.status(200).send(result);
+    });
+}
