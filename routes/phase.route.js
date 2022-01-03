@@ -25,12 +25,23 @@ router.get('/denrees/:id_phase', (req, res, next) => {
     controller.getDenrees(id, res)
 });
 
+router.get('/ingredients/:id_fiche_technique', (req, res, next) => {
+    const id = req.params['id_fiche_technique'];
+    controller.getPhaseWithIngredients(id, res);
+});
+
+/** POST **/
+
 router.post('/add_ingredient', (req, res, next) => {
     controller.addIngredient(req, res);
 });
 
 router.post('/phase_FT', (req, res, next) => {
     controller.addOrdrePhaseFT(req, res);
+});
+
+router.post('/phase_ingredient_quantity', (req, res, next) => {
+    controller.postQuantityIngredient(req, res);
 });
 
 /** DELETE **/

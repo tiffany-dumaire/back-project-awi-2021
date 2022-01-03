@@ -1,4 +1,5 @@
 const db = require('../database/generic_functions');
+const service = require ('../services/fiche_technique.service');
 const table = 'fiche_technique';
 const primaryKey = 'id_fiche_technique'
 
@@ -116,6 +117,22 @@ exports.searchFTsByLibelleAndCategorie = (search, id_categorie_fiche, res) => {
         res.status(200).send(result);
     });
 }
+
+exports.etiquetteFiche = (id_fiche_technique, res) => {
+    db.queryData(`SELECT ft.id_fiche_technique, ft.libelle_fiche_technique, ft.nombre_couverts, i.code, i.libelle, i.stock,SUM(qipft.quantite) AS quantite_ingredient
+                  FROM fiche_technique ft
+                  LEFT OUTER JOIN phase_FT pft ON pft.id_fiche_technique = ft.id_fiche_technique
+                  LEFT OUTER JOIN phase_ingredient pi ON pi.id_phase = pft.id_phase
+                  LEFT OUTER JOIN quantity_ingredient_phase_ft qipft ON qipft.id_phase_ingredient = pi.id_phase_ingredient
+                  LEFT OUTER JOIN ingredient i ON pi.code = i.code
+                  WHERE ft.id_fiche_technique = ${id_fiche_technique}
+                  GROUP BY i.code;`,
+    (result) => {
+        res.status(200).send(service.etiquetteAvecIngredients(result));
+    });
+}
+
+/** POST **/
 
 exports.createFT = (req, res) => {
     db.insertValue(table, req.body, (result) => {
