@@ -40,6 +40,10 @@ exports.searchFTsByLibelleAndCategorie = (search, id_categorie_fiche, res) => {
     model.searchFTsByLibelleAndCategorie(search, id_categorie_fiche, res);
 }
 
+exports.getDetailFT = (id_fiche_technique, res) => {
+    model.getDetailFT(id_fiche_technique, res);
+}
+
 exports.etiquetteFiche = (id_fiche_technique, res) => {
     model.etiquetteFiche(id_fiche_technique, res);
 }
