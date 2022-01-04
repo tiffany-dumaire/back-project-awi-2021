@@ -127,7 +127,7 @@ exports.getDetailFT = (id_fiche_technique, res) => {
                   LEFT OUTER JOIN phase_ingredient pi ON pft.id_phase = pi.id_phase
                   LEFT OUTER JOIN quantity_ingredient_phase_ft qipft ON qipft.id_phase_ingredient = pi.id_phase_ingredient
                   LEFT OUTER JOIN ingredient i ON i.code = pi.code
-                  WHERE ft.id_fiche_technique = 43
+                  WHERE ft.id_fiche_technique = ${id_fiche_technique}
                   ORDER BY pft.ordre ASC`,
     (result) => {
         res.status(200).send(service.fiche(result));

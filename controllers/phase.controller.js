@@ -8,6 +8,10 @@ exports.getPhases = (res) => {
     model.getPhases(res);
 };
 
+exports.getPhaseComplete = (id_phase, res) => {
+    model.getPhaseComplete(id_phase, res);
+};
+
 exports.modifyPhase = (id_phase, req, res) => {
     model.modifyPhase(id_phase, req, res);
 };
