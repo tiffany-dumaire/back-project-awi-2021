@@ -20,7 +20,7 @@ exports.getPhases = (res) => {
 };
 
 exports.getPhaseComplete = (id_phase, res) => {
-    db.queryData(`SELECT p.*, i.code, i.libelle 
+    db.queryData(`SELECT p.id_phase, p.libelle_phase, p.libelle_denrees, p.description_phase, p.duree_phase, i.code, i.libelle 
                   FROM phase p
                   LEFT OUTER JOIN phase_ingredient pi ON pi.id_phase = p.id_phase
                   LEFT OUTER JOIN ingredient i ON i.code = pi.code
