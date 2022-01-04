@@ -118,6 +118,22 @@ exports.searchFTsByLibelleAndCategorie = (search, id_categorie_fiche, res) => {
     });
 }
 
+exports.getDetailFT = (id_fiche_technique, res) => {
+    db.queryData(`SELECT ft.id_fiche_technique, ft.libelle_fiche_technique, ft.nombre_couverts, r.intitule_responsable, p.id_phase, p.libelle_phase, p.libelle_denrees, p.description_phase, p.duree_phase, pft.ordre, i.code, i.libelle, i.unite, i.prix_unitaire, i.allergene, qipft.quantite
+                  FROM fiche_technique ft
+                  JOIN responsable r ON r.id_responsable = ft.id_responsable
+                  LEFT OUTER JOIN phase_FT pft ON pft.id_fiche_technique = ft.id_fiche_technique
+                  JOIN phase p ON p.id_phase = pft.id_phase
+                  LEFT OUTER JOIN phase_ingredient pi ON pft.id_phase = pi.id_phase
+                  LEFT OUTER JOIN quantity_ingredient_phase_ft qipft ON qipft.id_phase_ingredient = pi.id_phase_ingredient
+                  LEFT OUTER JOIN ingredient i ON i.code = pi.code
+                  WHERE ft.id_fiche_technique = 43
+                  ORDER BY pft.ordre ASC`,
+    (result) => {
+        res.status(200).send(service.fiche(result));
+    });
+}
+
 exports.etiquetteFiche = (id_fiche_technique, res) => {
     db.queryData(`SELECT ft.id_fiche_technique, ft.libelle_fiche_technique, ft.nombre_couverts, i.code, i.libelle, i.stock,SUM(qipft.quantite) AS quantite_ingredient
                   FROM fiche_technique ft

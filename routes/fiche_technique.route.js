@@ -54,6 +54,11 @@ router.get('/search/byLibelle/:word/:id_categorie_fiche', (req, res, next) => {
     controller.searchFTsByLibelleAndCategorie(search, id, res);
 });
 
+router.get('/detail/:id_fiche_technique', (req, res, next) => {
+    const id = req.params['id_fiche_technique'];
+    controller.getDetailFT(id, res);
+});
+
 router.get('/etiquette/:id_fiche_technique', (req, res, next) => {
     const id = req.params['id_fiche_technique'];
     controller.etiquetteFiche(id, res);
