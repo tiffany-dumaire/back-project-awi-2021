@@ -4,8 +4,8 @@ const app = express();
 const cors = require('cors')
 
 var corsOptions = { 
-    origin: ["http://localhost:4000","http://10.113.76.102:4000","" ], 
-    default: "http://localhost:4000",
+    origin: [process.env.ORIGIN, process.env.ORIGIN2, ""],
+    default: process.env.ORIGIN,
     optionsSuccessStatus: 204 
 }; 
 
