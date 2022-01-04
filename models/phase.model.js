@@ -19,6 +19,18 @@ exports.getPhases = (res) => {
     });
 };
 
+exports.getPhaseComplete = (id_phase, res) => {
+    db.queryData(`SELECT p.*, i.code, i.libelle 
+                  FROM phase p
+                  LEFT OUTER JOIN phase_ingredient pi ON pi.id_phase = p.id_phase
+                  LEFT OUTER JOIN ingredient i ON i.code = pi.code
+                  WHERE p.id_phase = ${id_phase}
+                  ORDER BY i.libelle ASC`,
+    (result) => {
+        res.status(200).send(service.phase(result));
+    });
+};
+
 exports.modifyPhase = (id, req, res) => {
     db.queryData(`UPDATE ${table} SET libelle_phase="${req.body.libelle_phase}", libelle_denrees="${req.body.libelle_denrees}", description_phase="${req.body.description_phase}", duree_phase=${req.body.duree_phase} WHERE ${primaryKey}=${id}`, (result) => {
         res.status(200).send(result);

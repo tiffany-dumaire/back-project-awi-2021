@@ -23,3 +23,25 @@ exports.phasesWithIngredients = (result) => {
 
     return phases;
 };
+
+exports.phase = (result) => {
+    let infosPhase = {
+        id_phase: result[0].id_phase,
+        libelle_phase: result[0].libelle_phase,
+        libelle_denrees: result[0].libelle_denrees,
+        description_phase: result[0].description_phase,
+        duree_phase: result[0].duree_phase,
+        ingredients: []
+    }
+
+    result.forEach((row) => {
+        if (row.code !== null) {
+            infosPhase.ingredients.push({
+                code: row.code,
+                libelle: row.libelle
+            });
+        }  
+    });
+
+    return infosPhase;
+};
