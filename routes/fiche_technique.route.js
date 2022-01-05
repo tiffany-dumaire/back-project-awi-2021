@@ -6,6 +6,11 @@ router.get('/all', (req, res, next) => {
     controller.getAllFichesTechniques(res);
 });
 
+router.get('/byId/:id_fiche_technique', (req, res, next) => {
+    const id = req.params['id_fiche_technique'];
+    controller.getFiche(id, res);
+});
+
 router.get('/infos/:id_fiche_technique', (req, res, next) => {
     const id = req.params['id_fiche_technique'];
     controller.getInfosFiche(id, res);
@@ -68,6 +73,13 @@ router.get('/etiquette/:id_fiche_technique', (req, res, next) => {
 
 router.post('/create', (req, res, next) => {
     controller.createFT(req, res);
+});
+
+/** PUT **/
+
+router.put('/modify/:id_fiche_technique', (req, res, next) => {
+    const id = req.params['id_fiche_technique'];
+    controller.modifyFT(id, req, res);
 });
 
 /** DELETE **/

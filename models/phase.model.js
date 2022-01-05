@@ -19,6 +19,17 @@ exports.getPhases = (res) => {
     });
 };
 
+exports.getPhaseByFT = (id_fiche_technique, res) => {
+    db.queryData(`SELECT p.* 
+                  FROM phase p
+                  JOIN phase_FT pft ON pft.id_phase = p.id_phase
+                  WHERE pft.id_fiche_technique = ${id_fiche_technique}
+                  ORDER BY pft.ordre`,
+    (result) => {
+        res.status(200).send(result);
+    });
+};
+
 exports.getPhaseComplete = (id_phase, res) => {
     db.queryData(`SELECT p.id_phase, p.libelle_phase, p.libelle_denrees, p.description_phase, p.duree_phase, i.code, i.libelle 
                   FROM phase p

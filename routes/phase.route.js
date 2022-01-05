@@ -10,6 +10,11 @@ router.get('/all', (req, res, next) => {
     controller.getPhases(res);
 });
 
+router.get('/byFT/:id_fiche_technique', (req, res, next) => {
+    const id = req.params['id_fiche_technique'];
+    controller.getPhaseByFT(id, res);
+});
+
 router.get('/detail/:id_phase', (req, res, next) => {
     const id = req.params['id_phase'];
     controller.getPhaseComplete(id, res);

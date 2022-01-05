@@ -4,6 +4,10 @@ exports.getAllFichesTechniques = (res) => {
     model.getAllFichesTechniques(res);
 }
 
+exports.getFiche = (id_fiche_technique, res) => {
+    model.getFiche(id_fiche_technique, res);
+}
+
 exports.getInfosFiche = (id, res) => { 
     model.getInfosFiche(id, res);
 }
@@ -52,6 +56,12 @@ exports.etiquetteFiche = (id_fiche_technique, res) => {
 
 exports.createFT = (req, res) => {
     model.createFT(req, res);
+}
+
+/** PUT **/
+
+exports.modifyFT = (id_fiche_technique, req, res) => {
+    model.modifyFT(id_fiche_technique, req, res);
 }
 
 /** DELETE **/

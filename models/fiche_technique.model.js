@@ -10,7 +10,22 @@ exports.getAllFichesTechniques = (res) => {
     (result) => {
         res.status(200).send(result);
     });
-}
+};
+
+/**
+ * Récupérer les infos d'une fiche technique
+ * @param {*} id_fiche_technique 
+ * @param {*} res 
+ */
+exports.getFiche = (id_fiche_technique, res) => {
+    db.queryData(`SELECT ${table}.*, responsable.intitule_responsable 
+                  FROM ${table}  
+                  JOIN responsable ON responsable.id_responsable = ${table}.id_responsable
+                  WHERE ${primaryKey}=${id_fiche_technique}`, 
+    (result) => {
+        res.status(200).send(result);
+    });
+};
 
 exports.getInfosFiche = (id, res) => {
     db.queryData(`SELECT ${table}.*, responsable.intitule_responsable, categorie_fiches.categorie_fiche 
@@ -125,7 +140,7 @@ exports.getDetailFT = (id_fiche_technique, res) => {
                   LEFT OUTER JOIN phase_FT pft ON pft.id_fiche_technique = ft.id_fiche_technique
                   JOIN phase p ON p.id_phase = pft.id_phase
                   LEFT OUTER JOIN phase_ingredient pi ON pft.id_phase = pi.id_phase
-                  LEFT OUTER JOIN quantity_ingredient_phase_ft qipft ON qipft.id_phase_ingredient = pi.id_phase_ingredient
+                  LEFT OUTER JOIN quantity_ingredient_phase_ft qipft ON qipft.id_phase_ingredient = pi.id_phase_ingredient AND qipft.id_fiche_technique = ${id_fiche_technique}
                   LEFT OUTER JOIN ingredient i ON i.code = pi.code
                   WHERE ft.id_fiche_technique = ${id_fiche_technique}
                   ORDER BY pft.ordre ASC`,
@@ -152,6 +167,14 @@ exports.etiquetteFiche = (id_fiche_technique, res) => {
 
 exports.createFT = (req, res) => {
     db.insertValue(table, req.body, (result) => {
+        res.status(200).send(result);
+    });
+}
+
+/** PUT **/
+
+exports.modifyFT = (id_fiche_technique, req, res) => {
+    db.queryData(`UPDATE ${table} SET libelle_fiche_technique='${req.body.libelle_fiche_technique}',nombre_couverts=${req.body.nombre_couverts},id_responsable=${req.body.id_responsable},id_categorie_fiche=${req.body.id_categorie_fiche} WHERE ${primaryKey}=${id_fiche_technique}`, (result) => {
         res.status(200).send(result);
     });
 }

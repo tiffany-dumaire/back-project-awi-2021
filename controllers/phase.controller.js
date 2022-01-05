@@ -8,6 +8,10 @@ exports.getPhases = (res) => {
     model.getPhases(res);
 };
 
+exports.getPhaseByFT = (id_fiche_technique, res) => {
+    model.getPhaseByFT(id_fiche_technique, res);
+};
+
 exports.getPhaseComplete = (id_phase, res) => {
     model.getPhaseComplete(id_phase, res);
 };
