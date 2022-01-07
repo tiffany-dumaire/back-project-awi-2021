@@ -37,7 +37,6 @@ exports.etiquettesAvecIngredients = (result) => {
                 ficheAEtiquetter.push(row);
             }
         });
-        console.log(ficheAEtiquetter);
         fiches.push(this.etiquetteAvecIngredients(ficheAEtiquetter));
     });
 
