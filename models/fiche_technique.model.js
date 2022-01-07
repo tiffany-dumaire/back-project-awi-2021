@@ -150,16 +150,31 @@ exports.getDetailFT = (id_fiche_technique, res) => {
 }
 
 exports.etiquetteFiche = (id_fiche_technique, res) => {
-    db.queryData(`SELECT ft.id_fiche_technique, ft.libelle_fiche_technique, ft.nombre_couverts, i.code, i.libelle, i.stock,SUM(qipft.quantite) AS quantite_ingredient
-                  FROM fiche_technique ft
-                  LEFT OUTER JOIN phase_FT pft ON pft.id_fiche_technique = ft.id_fiche_technique
-                  LEFT OUTER JOIN phase_ingredient pi ON pi.id_phase = pft.id_phase
-                  LEFT OUTER JOIN quantity_ingredient_phase_ft qipft ON qipft.id_phase_ingredient = pi.id_phase_ingredient
-                  LEFT OUTER JOIN ingredient i ON pi.code = i.code
-                  WHERE ft.id_fiche_technique = ${id_fiche_technique}
-                  GROUP BY i.code;`,
+    db.queryData(`
+        SELECT ft.id_fiche_technique, ft.libelle_fiche_technique, ft.nombre_couverts, i.code, i.libelle, i.stock, sum(quantite) AS quantite_ingredient
+        FROM fiche_technique ft
+        LEFT OUTER JOIN quantity_ingredient_phase_ft qipft ON ft.id_fiche_technique = qipft.id_fiche_technique
+        LEFT OUTER JOIN phase_ingredient pi ON pi.id_phase_ingredient = qipft.id_phase_ingredient
+        LEFT OUTER JOIN ingredient i ON i.code = pi.code
+        WHERE ft.id_fiche_technique = ${id_fiche_technique}
+        GROUP BY i.code
+        ORDER BY i.code ASC`,
     (result) => {
         res.status(200).send(service.etiquetteAvecIngredients(result));
+    });
+}
+
+exports.etiquettesFiches = (res) => {
+    db.queryData(`
+        SELECT ft.id_fiche_technique, ft.libelle_fiche_technique, ft.nombre_couverts, i.code, i.libelle, i.stock, sum(quantite) AS quantite_ingredient
+        FROM fiche_technique ft
+        LEFT OUTER JOIN quantity_ingredient_phase_ft qipft ON ft.id_fiche_technique = qipft.id_fiche_technique
+        LEFT OUTER JOIN phase_ingredient pi ON pi.id_phase_ingredient = qipft.id_phase_ingredient
+        LEFT OUTER JOIN ingredient i ON i.code = pi.code
+        GROUP BY i.code, ft.id_fiche_technique
+        ORDER BY ft.id_fiche_technique ASC, i.code ASC`,
+    (result) => {
+        res.status(200).send(service.etiquettesAvecIngredients(result));
     });
 }
 

@@ -52,6 +52,10 @@ exports.etiquetteFiche = (id_fiche_technique, res) => {
     model.etiquetteFiche(id_fiche_technique, res);
 }
 
+exports.etiquettesFiches = (res) => {
+    model.etiquettesFiches(res);
+}
+
 /** POST **/
 
 exports.createFT = (req, res) => {

@@ -69,6 +69,10 @@ router.get('/etiquette/:id_fiche_technique', (req, res, next) => {
     controller.etiquetteFiche(id, res);
 });
 
+router.get('/etiquettes', (req, res, next) => {
+    controller.etiquettesFiches(res);
+});
+
 /** POST **/
 
 router.post('/create', (req, res, next) => {
