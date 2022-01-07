@@ -151,7 +151,7 @@ exports.getDetailFT = (id_fiche_technique, res) => {
 
 exports.etiquetteFiche = (id_fiche_technique, res) => {
     db.queryData(`
-        SELECT ft.id_fiche_technique, ft.libelle_fiche_technique, ft.nombre_couverts, i.code, i.libelle, i.stock, sum(quantite) AS quantite_ingredient
+        SELECT ft.id_fiche_technique, ft.libelle_fiche_technique, ft.nombre_couverts, i.code, i.libelle, i.allergene,i.stock, sum(quantite) AS quantite_ingredient
         FROM fiche_technique ft
         LEFT OUTER JOIN quantity_ingredient_phase_ft qipft ON ft.id_fiche_technique = qipft.id_fiche_technique
         LEFT OUTER JOIN phase_ingredient pi ON pi.id_phase_ingredient = qipft.id_phase_ingredient
@@ -166,7 +166,7 @@ exports.etiquetteFiche = (id_fiche_technique, res) => {
 
 exports.etiquettesFiches = (res) => {
     db.queryData(`
-        SELECT ft.id_fiche_technique, ft.libelle_fiche_technique, ft.nombre_couverts, i.code, i.libelle, i.stock, sum(quantite) AS quantite_ingredient
+        SELECT ft.id_fiche_technique, ft.libelle_fiche_technique, ft.nombre_couverts, i.code, i.libelle, i.allergene,i.stock, sum(quantite) AS quantite_ingredient
         FROM fiche_technique ft
         LEFT OUTER JOIN quantity_ingredient_phase_ft qipft ON ft.id_fiche_technique = qipft.id_fiche_technique
         LEFT OUTER JOIN phase_ingredient pi ON pi.id_phase_ingredient = qipft.id_phase_ingredient
