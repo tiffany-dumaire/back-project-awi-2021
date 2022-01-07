@@ -20,6 +20,30 @@ exports.etiquetteAvecIngredients = (result) => {
     return infosFiche;
 };
 
+exports.etiquettesAvecIngredients = (result) => {
+    let idsFiche = [];
+    let fiches = [];
+
+    result.forEach((row) => {
+        if (!idsFiche.includes(row.id_fiche_technique)) idsFiche.push(row.id_fiche_technique);
+    });
+
+    console.log(idsFiche);
+
+    idsFiche.forEach((id_fiche_technique) => {
+        let ficheAEtiquetter = []
+        result.forEach((row) => {
+            if(id_fiche_technique == row.id_fiche_technique){
+                ficheAEtiquetter.push(row);
+            }
+        });
+        console.log(ficheAEtiquetter);
+        fiches.push(this.etiquetteAvecIngredients(ficheAEtiquetter));
+    });
+
+    return fiches;
+}
+
 exports.fiche = (result) => {
     let infosFiche = {
         id_fiche_technique: result[0].id_fiche_technique,
