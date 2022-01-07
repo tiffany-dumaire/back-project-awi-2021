@@ -11,6 +11,7 @@ exports.etiquetteAvecIngredients = (result) => {
             infosFiche.ingredients.push({
                 code: row.code,
                 libelle: row.libelle,
+                allergene: row.allergene,
                 stock: row.stock,
                 quantite_ingredient: row.quantite_ingredient === null ? 0 : row.quantite_ingredient
             });
