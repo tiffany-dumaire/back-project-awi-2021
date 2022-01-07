@@ -28,8 +28,6 @@ exports.etiquettesAvecIngredients = (result) => {
         if (!idsFiche.includes(row.id_fiche_technique)) idsFiche.push(row.id_fiche_technique);
     });
 
-    console.log(idsFiche);
-
     idsFiche.forEach((id_fiche_technique) => {
         let ficheAEtiquetter = []
         result.forEach((row) => {
