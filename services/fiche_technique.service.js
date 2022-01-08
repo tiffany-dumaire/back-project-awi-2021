@@ -12,6 +12,7 @@ exports.etiquetteAvecIngredients = (result) => {
                 code: row.code,
                 libelle: row.libelle,
                 allergene: row.allergene,
+                unite: row.unite,
                 stock: row.stock,
                 quantite_ingredient: row.quantite_ingredient === null ? 0 : row.quantite_ingredient
             });
