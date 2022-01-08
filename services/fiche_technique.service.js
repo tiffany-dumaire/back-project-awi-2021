@@ -11,6 +11,7 @@ exports.etiquetteAvecIngredients = (result) => {
             infosFiche.ingredients.push({
                 code: row.code,
                 libelle: row.libelle,
+                allergene: row.allergene,
                 stock: row.stock,
                 quantite_ingredient: row.quantite_ingredient === null ? 0 : row.quantite_ingredient
             });
@@ -27,8 +28,6 @@ exports.etiquettesAvecIngredients = (result) => {
     result.forEach((row) => {
         if (!idsFiche.includes(row.id_fiche_technique)) idsFiche.push(row.id_fiche_technique);
     });
-
-    console.log(idsFiche);
 
     idsFiche.forEach((id_fiche_technique) => {
         let ficheAEtiquetter = []
