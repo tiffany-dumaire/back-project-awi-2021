@@ -48,7 +48,9 @@ exports.fiche = (result) => {
         id_fiche_technique: result[0].id_fiche_technique,
         libelle_fiche_technique: result[0].libelle_fiche_technique,
         nombre_couverts: result[0].nombre_couverts,
+        id_responsable: result[0].id_responsable,
         intitule_responsable: result[0].intitule_responsable,
+        id_categorie_fiche: result[0].id_categorie_fiche,
         phases: []
     }
 
@@ -68,6 +70,7 @@ exports.fiche = (result) => {
         }
         if (row.code !== null) {
             infosFiche.phases[infosFiche.phases.length - 1].ingredients.push({
+                id_phase_ingredient: row.id_phase_ingredient,
                 code: row.code,
                 libelle: row.libelle,
                 unite: row.unite,
