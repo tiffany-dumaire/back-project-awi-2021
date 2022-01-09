@@ -55,29 +55,31 @@ exports.fiche = (result) => {
     }
 
     result.forEach((row) => {
-        let phase = (element) => element.id_phase === row.id_phase;
-        const index = infosFiche.phases.findIndex(phase);
-        if (index === -1) {
-            infosFiche.phases.push({
-                id_phase: row.id_phase,
-                libelle_phase: row.libelle_phase,
-                libelle_denrees: row.libelle_denrees,
-                description_phase: row.description_phase,
-                duree_phase: row.duree_phase,
-                ordre: row.ordre,
-                ingredients: []
-            });
-        }
-        if (row.code !== null) {
-            infosFiche.phases[infosFiche.phases.length - 1].ingredients.push({
-                id_phase_ingredient: row.id_phase_ingredient,
-                code: row.code,
-                libelle: row.libelle,
-                unite: row.unite,
-                prix_unitaire: row.prix_unitaire,
-                allergene: row.allergene,
-                quantite: row.quantite
-            });
+        if (row.id_phase !== null) {
+            let phase = (element) => element.id_phase === row.id_phase;
+            const index = infosFiche.phases.findIndex(phase);
+            if (index === -1) {
+                infosFiche.phases.push({
+                    id_phase: row.id_phase,
+                    libelle_phase: row.libelle_phase,
+                    libelle_denrees: row.libelle_denrees,
+                    description_phase: row.description_phase,
+                    duree_phase: row.duree_phase,
+                    ordre: row.ordre,
+                    ingredients: []
+                });
+            }
+            if (row.code !== null) {
+                infosFiche.phases[infosFiche.phases.length - 1].ingredients.push({
+                    id_phase_ingredient: row.id_phase_ingredient,
+                    code: row.code,
+                    libelle: row.libelle,
+                    unite: row.unite,
+                    prix_unitaire: row.prix_unitaire,
+                    allergene: row.allergene,
+                    quantite: row.quantite
+                });
+            }
         }
     });
 
