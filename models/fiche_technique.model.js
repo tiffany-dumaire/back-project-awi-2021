@@ -3,6 +3,10 @@ const service = require ('../services/fiche_technique.service');
 const table = 'fiche_technique';
 const primaryKey = 'id_fiche_technique'
 
+/**
+ * Récupérer toutes les fiches techniques
+ * @param {*} res 
+ */
 exports.getAllFichesTechniques = (res) => {
     db.queryData(`SELECT ${table}.*, responsable.intitule_responsable 
                   FROM ${table}  
@@ -27,6 +31,11 @@ exports.getFiche = (id_fiche_technique, res) => {
     });
 };
 
+/**
+ * Récupérer les infos complètes d'une fiche technique
+ * @param {*} id 
+ * @param {*} res 
+ */
 exports.getInfosFiche = (id, res) => {
     db.queryData(`SELECT ${table}.*, responsable.intitule_responsable, categorie_fiches.categorie_fiche 
                   FROM ${table} 
@@ -38,12 +47,22 @@ exports.getInfosFiche = (id, res) => {
     });
 }
 
+/**
+ * Récupérer les fiches par catégorie de fiches techniques
+ * @param {*} id 
+ * @param {*} res 
+ */
 exports.getByCategorie = (id, res) => {
     db.queryData(`SELECT ${table}.*, responsable.intitule_responsable FROM ${table} JOIN responsable ON responsable.id_responsable = ${table}.id_responsable WHERE id_categorie_fiche = ${id}`, (result) => {
         res.status(200).send(result);
     });
 }
 
+/**
+ * Récupérer les ingrédients d'une fiche technique
+ * @param {*} id_fiche_technique 
+ * @param {*} res 
+ */
 exports.getIngredientsByFT = (id_fiche_technique, res) => {
     db.queryData(`SELECT pft.ordre, i.code, i.libelle, i.unite, qipft.quantite
                   FROM phase_FT pft
@@ -57,6 +76,11 @@ exports.getIngredientsByFT = (id_fiche_technique, res) => {
     });
 }
 
+/**
+ * Récupérer les phases d'une fiche technique
+ * @param {*} id_fiche_technique 
+ * @param {*} res 
+ */
 exports.getPhasesByFT = (id_fiche_technique, res) => {
     db.queryData(`SELECT phase.*, phase_FT.ordre
                   FROM phase
@@ -68,6 +92,12 @@ exports.getPhasesByFT = (id_fiche_technique, res) => {
     });
 }
 
+/**
+ * Récupérer les ingrédients par ordre de phases dans la fiche technique
+ * @param {*} id_fiche_technique 
+ * @param {*} ordre 
+ * @param {*} res 
+ */
 exports.getDenreesByFTAndOrdre = (id_fiche_technique, ordre, res) => {
     db.queryData(`SELECT ingredient.code, ingredient.libelle, quantity_ingredient_phase_ft.quantite, ingredient.unite, ingredient.prix_unitaire, ingredient.allergene  
                   FROM phase_ingredient
@@ -81,6 +111,11 @@ exports.getDenreesByFTAndOrdre = (id_fiche_technique, ordre, res) => {
     });
 }
 
+/**
+ * Rechercher une fiche technique par nom d'ingrédient
+ * @param {*} search 
+ * @param {*} res 
+ */
 exports.searchFTsByIngredients = (search, res) => {
     db.queryData(`SELECT DISTINCT ${table}.*, responsable.intitule_responsable
                   FROM ${table}
@@ -95,6 +130,12 @@ exports.searchFTsByIngredients = (search, res) => {
     });
 }
 
+/**
+ * Rechercher une fiche technique par nom d'ingrédient et catégorie de fiche
+ * @param {*} search 
+ * @param {*} id_categorie_fiche 
+ * @param {*} res 
+ */
 exports.searchFTsByIngredientsAndCategorie = (search, id_categorie_fiche, res) => {
     db.queryData(`SELECT DISTINCT ${table}.*, responsable.intitule_responsable
                   FROM ${table}
@@ -110,6 +151,11 @@ exports.searchFTsByIngredientsAndCategorie = (search, id_categorie_fiche, res) =
     });
 }
 
+/**
+ * Rechercher une fiche technique par nom de fiche technique
+ * @param {*} search 
+ * @param {*} res 
+ */
 exports.searchFTsByLibelle = (search, res) => {
     db.queryData(`SELECT DISTINCT ${table}.*, responsable.intitule_responsable
                   FROM ${table}
@@ -121,6 +167,12 @@ exports.searchFTsByLibelle = (search, res) => {
     });
 }
 
+/**
+ * Rechercher une fiche technique par nom de fiche technique et catégorie de fiche
+ * @param {*} search 
+ * @param {*} id_categorie_fiche 
+ * @param {*} res 
+ */
 exports.searchFTsByLibelleAndCategorie = (search, id_categorie_fiche, res) => {
     db.queryData(`SELECT DISTINCT ${table}.*, responsable.intitule_responsable
                   FROM ${table}
@@ -133,6 +185,11 @@ exports.searchFTsByLibelleAndCategorie = (search, id_categorie_fiche, res) => {
     });
 }
 
+/**
+ * Récupérer le détail complet d'une fiche technique
+ * @param {*} id_fiche_technique 
+ * @param {*} res 
+ */
 exports.getDetailFT = (id_fiche_technique, res) => {
     db.queryData(`SELECT ft.id_fiche_technique, ft.libelle_fiche_technique, ft.nombre_couverts, ft.id_categorie_fiche, ft.id_responsable, r.intitule_responsable, p.id_phase, p.libelle_phase, p.libelle_denrees, p.description_phase, p.duree_phase, pft.ordre, qipft.id_phase_ingredient, i.code, i.libelle, i.unite, i.prix_unitaire, i.allergene, qipft.quantite
                   FROM fiche_technique ft
@@ -149,6 +206,11 @@ exports.getDetailFT = (id_fiche_technique, res) => {
     });
 }
 
+/**
+ * Récupérer l'étiquette d'une fiche technique
+ * @param {*} id_fiche_technique 
+ * @param {*} res 
+ */
 exports.etiquetteFiche = (id_fiche_technique, res) => {
     db.queryData(`
         SELECT ft.id_fiche_technique, ft.libelle_fiche_technique, ft.nombre_couverts, i.code, i.libelle, i.allergene, i.unite,i.stock, sum(quantite) AS quantite_ingredient
@@ -164,6 +226,10 @@ exports.etiquetteFiche = (id_fiche_technique, res) => {
     });
 }
 
+/**
+ * Récupérer toutes les étiquettes
+ * @param {*} res 
+ */
 exports.etiquettesFiches = (res) => {
     db.queryData(`
         SELECT ft.id_fiche_technique, ft.libelle_fiche_technique, ft.nombre_couverts, i.code, i.libelle, i.allergene, i.unite, i.stock, sum(quantite) AS quantite_ingredient
@@ -180,6 +246,11 @@ exports.etiquettesFiches = (res) => {
 
 /** POST **/
 
+/**
+ * Créer une fiche technique
+ * @param {*} req 
+ * @param {*} res 
+ */
 exports.createFT = (req, res) => {
     db.insertValue(table, req.body, (result) => {
         res.status(200).send(result);
@@ -188,6 +259,12 @@ exports.createFT = (req, res) => {
 
 /** PUT **/
 
+/**
+ * Modifier une fiche technique
+ * @param {*} id_fiche_technique 
+ * @param {*} req 
+ * @param {*} res 
+ */
 exports.modifyFT = (id_fiche_technique, req, res) => {
     db.queryData(`UPDATE ${table} SET libelle_fiche_technique='${req.body.libelle_fiche_technique}',nombre_couverts=${req.body.nombre_couverts},id_responsable=${req.body.id_responsable},id_categorie_fiche=${req.body.id_categorie_fiche} WHERE ${primaryKey}=${id_fiche_technique}`, (result) => {
         res.status(200).send(result);
@@ -196,6 +273,11 @@ exports.modifyFT = (id_fiche_technique, req, res) => {
 
 /** DELETE **/
 
+/**
+ * Supprimer une fiche technique
+ * @param {*} id_fiche_technique 
+ * @param {*} res 
+ */
 exports.deleteFT = (id_fiche_technique, res) => {
     db.deleteValue(table, primaryKey, id_fiche_technique, (result) => {
         res.status(200).send(result);
