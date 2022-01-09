@@ -1,3 +1,8 @@
+/**
+ * Formatter les une étiquette avec ingrédients
+ * @param {*} result 
+ * @returns 
+ */
 exports.etiquetteAvecIngredients = (result) => {
     let infosFiche = {
         id_fiche_technique: result[0].id_fiche_technique,
@@ -22,6 +27,11 @@ exports.etiquetteAvecIngredients = (result) => {
     return infosFiche;
 };
 
+/**
+ * Formatter toutes les étiquettes avec ingrédients
+ * @param {*} result 
+ * @returns 
+ */
 exports.etiquettesAvecIngredients = (result) => {
     let idsFiche = [];
     let fiches = [];
@@ -43,6 +53,11 @@ exports.etiquettesAvecIngredients = (result) => {
     return fiches;
 }
 
+/**
+ * Formatter une fiche technique
+ * @param {*} result 
+ * @returns 
+ */
 exports.fiche = (result) => {
     let infosFiche = {
         id_fiche_technique: result[0].id_fiche_technique,

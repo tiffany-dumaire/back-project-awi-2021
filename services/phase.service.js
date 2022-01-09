@@ -1,3 +1,8 @@
+/**
+ * Formatter les phases avec ingrédients
+ * @param {*} result 
+ * @returns 
+ */
 exports.phasesWithIngredients = (result) => {
     let phases = [];
 
@@ -24,6 +29,11 @@ exports.phasesWithIngredients = (result) => {
     return phases;
 };
 
+/**
+ * Formatter une phase
+ * @param {*} result 
+ * @returns 
+ */
 exports.phase = (result) => {
     let infosPhase = {
         id_phase: result[0].id_phase,

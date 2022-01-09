@@ -1,3 +1,4 @@
+//ajout des routes
 module.exports = function(app){
     app.use('/ingredients', require('./ingredient.route'));
     app.use('/categories', require('./categorie.route'));

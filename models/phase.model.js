@@ -7,18 +7,21 @@ const primaryKey2 = 'id_phase_ingredient';
 const table3 = 'phase_FT';
 const primaryKey3 = 'id_phase_ft';
 
-exports.createPhase = (req, res) => {
-    db.insertValue(table, req.body, (result) => {
-        res.status(200).send(result);
-    });
-};
-
+/**
+ * Récupérer toutes les phases
+ * @param {*} res 
+ */
 exports.getPhases = (res) => {
     db.queryAll(table, (result) => {
         res.status(200).send(result);
     });
 };
 
+/**
+ * Récupérer les phases d'une fiche technique
+ * @param {*} id_fiche_technique 
+ * @param {*} res 
+ */
 exports.getPhaseByFT = (id_fiche_technique, res) => {
     db.queryData(`SELECT p.* 
                   FROM phase p
@@ -30,6 +33,11 @@ exports.getPhaseByFT = (id_fiche_technique, res) => {
     });
 };
 
+/**
+ * Récupérer la phase complète
+ * @param {*} id_phase 
+ * @param {*} res 
+ */
 exports.getPhaseComplete = (id_phase, res) => {
     db.queryData(`SELECT p.id_phase, p.libelle_phase, p.libelle_denrees, p.description_phase, p.duree_phase, i.code, i.libelle 
                   FROM phase p
@@ -42,24 +50,33 @@ exports.getPhaseComplete = (id_phase, res) => {
     });
 };
 
-exports.modifyPhase = (id, req, res) => {
-    db.queryData(`UPDATE ${table} SET libelle_phase="${req.body.libelle_phase}", libelle_denrees="${req.body.libelle_denrees}", description_phase="${req.body.description_phase}", duree_phase=${req.body.duree_phase} WHERE ${primaryKey}=${id}`, (result) => {
-        res.status(200).send(result);
-    });
-};
-
+/**
+ * Récupérer les infos d'une phase
+ * @param {*} id_phase 
+ * @param {*} res 
+ */
 exports.getPhase = (id_phase, res) => {
     db.queryData(`SELECT * FROM ${table} WHERE ${primaryKey}=${id_phase}`, (result) => {
         res.status(200).send(result);
     });
 };
 
+/**
+ * Récupérer les denrées d'une phase
+ * @param {*} id_phase 
+ * @param {*} res 
+ */
 exports.getDenrees = (id_phase, res) => {
     db.queryData(`SELECT * FROM ingredient i JOIN phase_ingredient pi ON pi.code = i.code WHERE pi.${primaryKey}=${id_phase}`, (result) => {
         res.status(200).send(result);
     });
 };
 
+/**
+ * Récupérer les ingrédients d'une fiche technique
+ * @param {*} id_fiche_technique 
+ * @param {*} res 
+ */
 exports.getPhaseWithIngredients = (id_fiche_technique, res) => {
     db.queryData(`SELECT p.id_phase, p.libelle_phase, pi.id_phase_ingredient, i.libelle
                   FROM phase p
@@ -76,38 +93,86 @@ exports.getPhaseWithIngredients = (id_fiche_technique, res) => {
     });
 };
 
-exports.addIngredient = (req, res) => {
-    db.insertValue(table2, req.body, (result) => {
-        res.status(200).send(result);
-    });
-};
-
-exports.addOrdrePhaseFT = (req, res) => {
-    db.insertValue(table3, req.body, (result) => {
-        res.status(200).send(result);
-    });
-};
-
-exports.pullIngredient = (id_phase_ingredient, res) => {
-    db.deleteValue(table2, primaryKey2, id_phase_ingredient, (result) => {
-        res.status(200).send(result);
-    });
-};
-
 /** POST **/
 
+/**
+ * Créer une phase
+ * @param {*} req 
+ * @param {*} res 
+ */
+exports.createPhase = (req, res) => {
+    db.insertValue(table, req.body, (result) => {
+        res.status(200).send(result);
+    });
+};
+
+/**
+ * Ajouter la quantité d'ingrédient d'une phase à une fiche technique
+ * @param {*} req 
+ * @param {*} res 
+ */
 exports.postQuantityIngredient = (req, res) => {
     db.insertValue('quantity_ingredient_phase_ft', req.body, (result) => {
         res.status(200).send(result);
     });
 };
 
+/**
+ * Ajouter un ingrédient à une phase
+ * @param {*} req 
+ * @param {*} res 
+ */
+exports.addIngredient = (req, res) => {
+    db.insertValue(table2, req.body, (result) => {
+        res.status(200).send(result);
+    });
+};
+
+/**
+ * Ajouter une phase et l'ordre dans la fiche technique
+ * @param {*} req 
+ * @param {*} res 
+ */
+exports.addOrdrePhaseFT = (req, res) => {
+    db.insertValue(table3, req.body, (result) => {
+        res.status(200).send(result);
+    });
+};
+
 /** PUT **/
+
+/**
+ * Modifier une phase 
+ * @param {*} id 
+ * @param {*} req 
+ * @param {*} res 
+ */
+exports.modifyPhase = (id, req, res) => {
+    db.queryData(`UPDATE ${table} SET libelle_phase="${req.body.libelle_phase}", libelle_denrees="${req.body.libelle_denrees}", description_phase="${req.body.description_phase}", duree_phase=${req.body.duree_phase} WHERE ${primaryKey}=${id}`, (result) => {
+        res.status(200).send(result);
+    });
+};
 
 /** DELETE **/
 
+/**
+ * Supprimer une phase par id
+ * @param {*} id_phase 
+ * @param {*} res 
+ */
 exports.deletePhase = (id_phase, res) => {
     db.deleteValue(table, primaryKey, id_phase, (result) => {
+        res.status(200).send(result);
+    });
+};
+
+/**
+ * Retirer un ingrédient d'une phase
+ * @param {*} id_phase_ingredient 
+ * @param {*} res 
+ */
+ exports.pullIngredient = (id_phase_ingredient, res) => {
+    db.deleteValue(table2, primaryKey2, id_phase_ingredient, (result) => {
         res.status(200).send(result);
     });
 };
