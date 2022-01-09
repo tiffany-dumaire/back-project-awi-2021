@@ -4,6 +4,10 @@ exports.getAllIngredients = (res) => {
     model.getAllIngredients(res);
 }
 
+exports.getIngredientById = (code, res) => {
+    model.getIngredientById(code, res);
+}
+
 exports.getAllIds = (res) => {
     model.getAllIds(res);
 }

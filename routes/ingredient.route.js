@@ -6,6 +6,11 @@ router.get('/all', (req, res, next) => {
     controller.getAllIngredients(res);
 });
 
+router.get('/byId/:code', (req, res, next) => {
+    const id = req.params['code'];
+    controller.getIngredientById(id, res);
+});
+
 router.get('/allIds', (req, res, next) => {
     controller.getAllIds(res);
 });
