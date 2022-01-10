@@ -129,6 +129,15 @@ exports.deletePhase = (id_phase, res) => {
 };
 
 /**
+ * Supprimer une phase d'une fiche technique par id
+ * @param {*} id_phase_ft 
+ * @param {*} res 
+ */
+exports.deletePhaseFT = (id_phase_ft, res) => {
+    model.deletePhaseFT(id_phase_ft, res);
+};
+
+/**
  * Retirer un ingrédient d'une phase
  * @param {*} id_phase_ingredient 
  * @param {*} res 

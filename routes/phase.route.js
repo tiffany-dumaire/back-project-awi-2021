@@ -116,6 +116,14 @@ router.delete('/pull_ingredient/:id_phase_ingredient', (req, res, next) => {
 });
 
 /**
+ * Supprimer une phase d'une fiche technique par id
+ */
+router.delete('/phase_FT/delete/:id_phase_ft', (req, res, next) => {
+    const id = req.params['id_phase_ft'];
+    controller.deletePhaseFT(id, res);
+});
+
+/**
  * Supprimer une phase par id
  */
 router.delete('/delete/:id_phase', (req, res, next) => {

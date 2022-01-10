@@ -194,6 +194,17 @@ exports.deletePhase = (id_phase, res) => {
 };
 
 /**
+ * Supprimer une phase d'une fiche technique par id
+ * @param {*} id_phase_ft 
+ * @param {*} res 
+ */
+ exports.deletePhaseFT = (id_phase_ft, res) => {
+    db.deleteValue(table3, primaryKey3, id_phase_ft, (result) => {
+        res.status(200).send(result);
+    });
+};
+
+/**
  * Retirer un ingrédient d'une phase
  * @param {*} id_phase_ingredient 
  * @param {*} res 
