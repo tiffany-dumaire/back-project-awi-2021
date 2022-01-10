@@ -191,7 +191,7 @@ exports.searchFTsByLibelleAndCategorie = (search, id_categorie_fiche, res) => {
  * @param {*} res 
  */
 exports.getDetailFT = (id_fiche_technique, res) => {
-    db.queryData(`SELECT ft.id_fiche_technique, ft.libelle_fiche_technique, ft.nombre_couverts, ft.id_categorie_fiche, ft.id_responsable, r.intitule_responsable, p.id_phase, p.libelle_phase, p.libelle_denrees, p.description_phase, p.duree_phase, pft.ordre, qipft.id_phase_ingredient, i.code, i.libelle, i.unite, i.prix_unitaire, i.allergene, qipft.quantite
+    db.queryData(`SELECT ft.id_fiche_technique, ft.libelle_fiche_technique, ft.nombre_couverts, ft.id_categorie_fiche, ft.id_responsable, r.intitule_responsable, pft.id_phase_ft, p.id_phase, p.libelle_phase, p.libelle_denrees, p.description_phase, p.duree_phase, pft.ordre, qipft.id_phase_ingredient, i.code, i.libelle, i.unite, i.prix_unitaire, i.allergene, qipft.quantite
                   FROM fiche_technique ft
                   JOIN responsable r ON r.id_responsable = ft.id_responsable
                   LEFT OUTER JOIN phase_FT pft ON pft.id_fiche_technique = ft.id_fiche_technique

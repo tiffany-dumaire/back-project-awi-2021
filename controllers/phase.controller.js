@@ -99,8 +99,22 @@ exports.addOrdrePhaseFT = (req, res) => {
  * @param {*} req 
  * @param {*} res 
  */
- exports.modifyPhase = (id_phase, req, res) => {
+exports.modifyPhase = (id_phase, req, res) => {
     model.modifyPhase(id_phase, req, res);
+};
+
+exports.modifyOrdrePhaseFT = (id_phase_ft, req, res) => {
+    model.modifyOrdrePhaseFT(id_phase_ft, req, res);
+};
+
+/**
+ * Modifier la quantité d'ingrédient d'une phase à une fiche technique
+ * @param {*} id_phase_ingredient 
+ * @param {*} req 
+ * @param {*} res 
+ */
+exports.putQuantityIngredient = (id_phase_ingredient, req, res) => {
+    model.putQuantityIngredient(id_phase_ingredient, req, res);
 };
 
 /** DELETE **/

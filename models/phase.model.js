@@ -78,16 +78,19 @@ exports.getDenrees = (id_phase, res) => {
  * @param {*} res 
  */
 exports.getPhaseWithIngredients = (id_fiche_technique, res) => {
-    db.queryData(`SELECT p.id_phase, p.libelle_phase, pi.id_phase_ingredient, i.libelle
-                  FROM phase p
-                  LEFT OUTER JOIN phase_ingredient pi ON pi.id_phase = p.id_phase
-                  LEFT OUTER JOIN ingredient i ON i.code = pi.code
-                  WHERE p.id_phase IN (
-                      SELECT pft.id_phase
-                      FROM phase_FT pft
-                      WHERE pft.id_fiche_technique = ${id_fiche_technique}
-                  )
-                  ORDER BY p.id_phase, i.libelle`,
+    db.queryData(`
+        SELECT p.id_phase, p.libelle_phase, pi.id_phase_ingredient, i.libelle, qipft.quantite
+        FROM phase p
+        LEFT OUTER JOIN phase_ingredient pi ON pi.id_phase = p.id_phase
+        LEFT OUTER JOIN ingredient i ON i.code = pi.code
+        LEFT OUTER JOIN quantity_ingredient_phase_ft qipft ON qipft.id_phase_ingredient = pi.id_phase_ingredient AND qipft.id_fiche_technique = ${id_fiche_technique}
+        WHERE p.id_phase IN (
+            SELECT pft.id_phase
+            FROM phase_FT pft
+            WHERE pft.id_fiche_technique = ${id_fiche_technique}
+        )
+        ORDER BY p.id_phase, i.libelle
+    `,
     (result) => {
         res.status(200).send(service.phasesWithIngredients(result));
     });
@@ -149,6 +152,30 @@ exports.addOrdrePhaseFT = (req, res) => {
  */
 exports.modifyPhase = (id, req, res) => {
     db.queryData(`UPDATE ${table} SET libelle_phase="${req.body.libelle_phase}", libelle_denrees="${req.body.libelle_denrees}", description_phase="${req.body.description_phase}", duree_phase=${req.body.duree_phase} WHERE ${primaryKey}=${id}`, (result) => {
+        res.status(200).send(result);
+    });
+};
+
+/**
+ * Modifier une phase et l'ordre dans la fiche technique
+ * @param {*} id_phase_ft 
+ * @param {*} req 
+ * @param {*} res 
+ */
+ exports.modifyOrdrePhaseFT = (id_phase_ft, req, res) => {
+    db.queryData(`UPDATE ${table3} SET ordre=${req.body.ordre} WHERE ${primaryKey3}=${id_phase_ft}`, (result) => {
+        res.status(200).send(result);
+    });
+};
+
+/**
+ * Modifier la quantité d'ingrédient d'une phase à une fiche technique
+ * @param {*} id_phase_ingredient 
+ * @param {*} req 
+ * @param {*} res 
+ */
+ exports.putQuantityIngredient = (id_phase_ingredient, req, res) => {
+    db.queryData(`UPDATE quantity_ingredient_phase_ft SET quantite=${req.body.quantite} WHERE id_phase_ingredient=${id_phase_ingredient}`, (result) => {
         res.status(200).send(result);
     });
 };

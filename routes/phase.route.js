@@ -89,6 +89,22 @@ router.post('/phase_ingredient_quantity', (req, res, next) => {
     controller.modifyPhase(id, req, res);
 });
 
+/**
+ * Modifier une phase et l'ordre dans la fiche technique
+ */
+ router.put('/phase_FT/modify/:id_phase_ft', (req, res, next) => {
+    const id = req.params['id_phase_ft'];
+    controller.modifyOrdrePhaseFT(id, req, res);
+});
+
+/**
+ * Modifier la quantité d'ingrédient d'une phase à une fiche technique
+ */
+ router.put('/phase_ingredient_quantity/modify/:id_phase_ingredient', (req, res, next) => {
+    const id = req.params['id_phase_ingredient'];
+    controller.putQuantityIngredient(id, req, res);
+});
+
 /** DELETE **/
 
 /**

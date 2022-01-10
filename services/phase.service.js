@@ -20,7 +20,7 @@ exports.phasesWithIngredients = (result) => {
             phases[phases.length - 1].ingredients.push({
                 id_phase_ingredient: row.id_phase_ingredient,
                 libelle: row.libelle,
-                quantite: 0
+                quantite: row.quantite === null ? 0 : row.quantite
             });
         }
             
