@@ -76,6 +76,7 @@ exports.fiche = (result) => {
             if (index === -1) {
                 infosFiche.phases.push({
                     id_phase: row.id_phase,
+                    id_phase_ft: row.id_phase_ft,
                     libelle_phase: row.libelle_phase,
                     libelle_denrees: row.libelle_denrees,
                     description_phase: row.description_phase,
