@@ -10,6 +10,13 @@ router.get('/all', (req, res, next) => {
 });
 
 /**
+ * Récupérer toutes les fiches techniques détaillées (ajout pour l'appli mobile)
+ */
+ router.get('/allDetails', (req, res, next) => {
+    controller.getAllDetailsFichesTechniques(res);
+});
+
+/**
  * Récupérer les infos d'une fiche technique
  */
 router.get('/byId/:id_fiche_technique', (req, res, next) => {

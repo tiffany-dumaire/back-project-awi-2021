@@ -17,6 +17,26 @@ exports.getAllFichesTechniques = (res) => {
 };
 
 /**
+ * Récupérer les détails de toutes les fiches techniques (ajout pour l'appli mobile)
+ * @param {*} res 
+ */
+exports.getAllDetailsFichesTechniques = (res) => {
+    db.queryData(`
+        SELECT ft.id_fiche_technique, ft.libelle_fiche_technique, ft.nombre_couverts, ft.id_categorie_fiche, ft.id_responsable, r.intitule_responsable, pft.id_phase_ft, p.id_phase, p.libelle_phase, p.libelle_denrees, p.description_phase, p.duree_phase, pft.ordre, qipft.id_phase_ingredient, i.code, i.libelle, i.unite, i.prix_unitaire, i.allergene, qipft.quantite
+        FROM fiche_technique ft
+        JOIN responsable r ON r.id_responsable = ft.id_responsable
+        LEFT OUTER JOIN phase_FT pft ON pft.id_fiche_technique = ft.id_fiche_technique
+        LEFT OUTER JOIN phase p ON p.id_phase = pft.id_phase
+        LEFT OUTER JOIN phase_ingredient pi ON pft.id_phase = pi.id_phase
+        LEFT OUTER JOIN quantity_ingredient_phase_ft qipft ON qipft.id_phase_ingredient = pi.id_phase_ingredient
+        LEFT OUTER JOIN ingredient i ON i.code = pi.code
+        ORDER BY ft.id_fiche_technique, pft.ordre ASC
+    `, (result) => {
+        res.status(200).send(service.fiches(result))
+    });
+};
+
+/**
  * Récupérer les infos d'une fiche technique
  * @param {*} id_fiche_technique 
  * @param {*} res 
