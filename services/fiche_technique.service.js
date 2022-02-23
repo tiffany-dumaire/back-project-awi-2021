@@ -101,3 +101,29 @@ exports.fiche = (result) => {
 
     return infosFiche;
 };
+
+/**
+ * Formatter une liste fiches détaillées(ajout pour l'appli mobile)
+ * @param {*} result 
+ * @returns 
+ */
+exports.fiches = (result) => {
+    let idsFiche = [];
+    let fiches = [];
+
+    result.forEach((row) => {
+        if (!idsFiche.includes(row.id_fiche_technique)) idsFiche.push(row.id_fiche_technique);
+    });
+
+    idsFiche.forEach((id_fiche_technique) => {
+        let fiche = []
+        result.forEach((row) => {
+            if(id_fiche_technique == row.id_fiche_technique){
+                fiche.push(row);
+            }
+        });
+        fiches.push(this.fiche(fiche));
+    });
+
+    return fiches;
+}

@@ -9,6 +9,14 @@ exports.getAllFichesTechniques = (res) => {
 }
 
 /**
+ * Récupération de toutes les fiches en détail (ajout pour l'appli mobile)
+ * @param {*} res 
+ */
+exports.getAllDetailsFichesTechniques = (res) => {
+    model.getAllDetailsFichesTechniques(res);
+}
+
+/**
  * Récupérer les infos d'une fiche technique
  * @param {*} id_fiche_technique 
  * @param {*} res 
