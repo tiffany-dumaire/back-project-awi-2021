@@ -29,6 +29,7 @@ exports.getAllDetailsFichesTechniques = (res) => {
         LEFT OUTER JOIN phase p ON p.id_phase = pft.id_phase
         LEFT OUTER JOIN phase_ingredient pi ON pft.id_phase = pi.id_phase
         LEFT OUTER JOIN quantity_ingredient_phase_ft qipft ON qipft.id_phase_ingredient = pi.id_phase_ingredient
+        AND qipft.id_fiche_technique = ft.id_fiche_technique
         LEFT OUTER JOIN ingredient i ON i.code = pi.code
         ORDER BY ft.id_fiche_technique, pft.ordre ASC
     `, (result) => {
