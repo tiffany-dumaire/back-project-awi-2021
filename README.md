@@ -33,5 +33,5 @@ Professeur d'un lycée hôtelier de Montpellier (Georges Frêche)
 
 ### Version hébergée
 
-Rendez-vous à l'url suivante : [https://back-awi-projet-2021.herokuapp.com/](https://back-awi-projet-2021.herokuapp.com/)
+Rendez-vous à l'url suivante : [https://back-awi-projet-2022.netlify.app/](https://back-awi-projet-2022.netlify.app/)
 
